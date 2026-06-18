@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Alphonso Ecosystem — One Ecosystem. Infinite Impact.</title>
+<meta name="description" content="A local-first AI operating environment. 9 specialized agents. 13 connectors. 100% on your machine."/>
+<link rel="icon" href="assets/favicon.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#060A07;--bg2:#0C110D;--bg3:#111814;
+  --lime:#9EF01A;--lime-hi:#B5FF35;--limed:rgba(158,240,26,.1);
+  --cream:#EDEEE6;--muted:#56625A;--dim:#1E2820;
+  --line:rgba(255,255,255,.07);--lineg:rgba(158,240,26,.12);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--cream);font-family:'Inter',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::selection{background:var(--lime);color:#000}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--lime);border-radius:2px}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(158,240,26,.5)}50%{opacity:.6;box-shadow:0 0 0 7px rgba(158,240,26,0)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-13px)}}
+@keyframes scan{0%{top:-2%}100%{top:102%}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes typeIn{from{opacity:0;transform:translateX(-5px)}to{opacity:1;transform:translateX(0)}}
+@keyframes shimmer{0%{opacity:.6}50%{opacity:1}100%{opacity:.6}}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-l{opacity:0;transform:translateX(-22px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal-l.visible{opacity:1;transform:translateX(0)}
+.reveal-r{opacity:0;transform:translateX(22px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal-r.visible{opacity:1;transform:translateX(0)}
+.dot-grid{background-image:radial-gradient(rgba(158,240,26,.055) 1px,transparent 1px);background-size:30px 30px}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:14px 52px;display:flex;align-items:center;justify-content:space-between;transition:background .4s,border-color .4s;border-bottom:1px solid transparent}
+nav.scrolled{background:rgba(6,10,7,.96);backdrop-filter:blur(24px);border-color:rgba(158,240,26,.1)}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.nav-logo img{width:32px;height:32px;border-radius:8px}
+.nav-name{font-family:'Syne',sans-serif;font-weight:800;font-size:14px;letter-spacing:1.5px;color:var(--cream);text-transform:uppercase;line-height:1.1}
+.nav-sub{font-family:'Syne',sans-serif;font-weight:700;font-size:9px;letter-spacing:2.5px;color:var(--lime);text-transform:uppercase;line-height:1}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-link{color:var(--muted);font-size:14px;font-weight:500;transition:color .2s}
+.nav-link:hover{color:var(--cream)}
+.nav-gh{color:var(--muted);font-size:14px;border:1px solid rgba(255,255,255,.1);border-radius:7px;padding:7px 14px;transition:all .2s}
+.nav-gh:hover{color:var(--cream);border-color:rgba(255,255,255,.25)}
+.btn-lime{display:inline-flex;align-items:center;gap:8px;background:var(--lime);color:#000;font-family:'Syne',sans-serif;font-weight:800;font-size:14px;padding:9px 22px;border-radius:8px;box-shadow:0 0 28px rgba(158,240,26,.35);transition:all .2s;border:none;cursor:pointer}
+.btn-lime:hover{background:var(--lime-hi);transform:translateY(-2px);box-shadow:0 4px 50px rgba(158,240,26,.5)}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--cream);font-family:'Syne',sans-serif;font-weight:600;font-size:15px;padding:12px 26px;border-radius:8px;border:1px solid rgba(255,255,255,.12);transition:all .2s}
+.btn-ghost:hover{border-color:rgba(255,255,255,.28);background:rgba(255,255,255,.04)}
+#hero{min-height:100vh;position:relative;overflow:hidden;display:flex;flex-direction:column}
+.scanline{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(158,240,26,.22),transparent);animation:scan 12s linear infinite;pointer-events:none;z-index:1}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:130px 52px 40px;gap:48px;flex:1;position:relative;z-index:2}
+.hero-badges{display:flex;gap:16px;margin-bottom:26px;flex-wrap:wrap}
+.badge{display:flex;align-items:center;gap:6px;font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:1.5px;color:var(--dim)}
+.badge.on{color:var(--lime)}
+.bdot{width:5px;height:5px;border-radius:50%;background:var(--dim);flex-shrink:0}
+.badge.on .bdot{background:var(--lime);box-shadow:0 0 7px var(--lime);animation:pulse 2.5s ease-in-out infinite}
+.h1-w{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(40px,5.5vw,72px);letter-spacing:-2.5px;line-height:.97;color:var(--cream)}
+.h1-g{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(40px,5.5vw,72px);letter-spacing:-2.5px;line-height:.97;color:var(--lime);text-shadow:0 0 50px rgba(158,240,26,.45);margin-bottom:22px}
+.h1-d{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(40px,5.5vw,72px);letter-spacing:-2.5px;line-height:.97;color:rgba(237,238,230,.18)}
+.cycle-wrap{position:relative;height:clamp(40px,5.5vw,72px);overflow:hidden;display:inline-block;min-width:260px}
+.cy{position:absolute;top:0;left:0;font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(40px,5.5vw,72px);letter-spacing:-2.5px;line-height:.97;white-space:nowrap;opacity:0;transform:translateY(20px);transition:opacity .35s ease,transform .35s ease}
+.cy.on{opacity:1;transform:translateY(0)}.cy.out{opacity:0;transform:translateY(-20px)}
+.cy-badge{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.2px;padding:5px 11px;border-radius:5px;border:1px solid;transition:all .35s;margin-top:6px}
+.hero-desc{color:var(--muted);font-size:16px;line-height:1.75;max-width:440px;margin-bottom:32px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:26px}
+.hero-sub{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.gh-pill{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:7px;padding:8px 14px;color:var(--muted);font-size:13px;transition:color .2s}
+.gh-pill:hover{color:var(--cream)}
+.hero-img-side{position:relative}
+.hex-float{position:absolute;top:-34px;left:50%;transform:translateX(-50%);z-index:4;animation:float 4s ease-in-out infinite}
+.hero-card{border-radius:16px;overflow:hidden;border:1px solid rgba(158,240,26,.15);box-shadow:0 0 120px rgba(158,240,26,.08),0 60px 120px rgba(0,0,0,.9);background:var(--bg2);position:relative}
+.hero-card img{width:100%;display:block;object-fit:cover;max-height:680px}
+.card-ot{position:absolute;top:0;left:0;right:0;height:25%;background:linear-gradient(to bottom,rgba(6,10,7,.8),transparent);pointer-events:none}
+.card-ob{position:absolute;bottom:0;left:0;right:0;height:35%;background:linear-gradient(to top,rgba(6,10,7,.9),transparent);pointer-events:none}
+.live-badge{position:absolute;bottom:20px;left:20px;display:inline-flex;align-items:center;gap:8px;background:rgba(0,0,0,.78);backdrop-filter:blur(12px);border:1px solid rgba(158,240,26,.22);border-radius:100px;padding:7px 16px}
+.ldot{width:7px;height:7px;border-radius:50%;background:var(--lime);display:inline-block;animation:pulse 2s ease-in-out infinite}
+.ltxt{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--lime);letter-spacing:.5px}
+.ver{position:absolute;top:18px;right:18px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--lime);background:rgba(0,0,0,.65);border:1px solid rgba(158,240,26,.22);border-radius:6px;padding:5px 10px}
+.stats-bar{border-top:1px solid rgba(158,240,26,.08);background:rgba(12,17,13,.75);backdrop-filter:blur(20px);padding:22px 52px;display:grid;grid-template-columns:repeat(5,1fr)}
+.stat{text-align:center;padding:4px 16px}.stat:not(:last-child){border-right:1px solid rgba(255,255,255,.06)}
+.sn{font-family:'Syne',sans-serif;font-weight:800;font-size:22px;color:var(--cream);letter-spacing:-1px;line-height:1}
+.sl{color:var(--dim);font-size:11px;font-weight:500;margin-top:4px}
+.video-section{padding:48px 52px 100px;max-width:1100px;margin:0 auto}
+.video-wrap{border-radius:16px;overflow:hidden;border:1px solid rgba(158,240,26,.15);box-shadow:0 0 80px rgba(158,240,26,.07),0 40px 80px rgba(0,0,0,.7);position:relative;background:var(--bg2)}
+.video-wrap video{width:100%;display:block}
+.video-overlay{position:absolute;bottom:0;left:0;right:0;padding:28px;background:linear-gradient(to top,rgba(6,10,7,.9),transparent)}
+.video-label{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--cream)}
+.video-sub{color:var(--muted);font-size:13px;margin-top:4px}
+#pillars{border-top:1px solid var(--lineg);border-bottom:1px solid var(--lineg);margin-bottom:100px}
+.pillars-grid{display:grid;grid-template-columns:repeat(5,1fr)}
+.pillar{padding:26px 22px}.pillar:not(:last-child){border-right:1px solid rgba(158,240,26,.08)}
+.pi{font-size:20px;margin-bottom:10px}.pt{font-family:'Syne',sans-serif;font-weight:700;font-size:13px;color:var(--cream);margin-bottom:6px}
+.pd{color:var(--dim);font-size:12px;line-height:1.55}
+.section{padding:0 52px 120px}
+.label-tag{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--lime);display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.label-tag::before{content:'';display:block;width:20px;height:1px;background:var(--lime)}
+.sec-h2{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(32px,4.5vw,54px);letter-spacing:-2.5px;color:var(--cream);line-height:1.05;max-width:560px;margin-bottom:14px}
+.sec-p{color:var(--muted);font-size:15px;line-height:1.7;max-width:500px}
+.agents-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:20px}
+.ac{background:var(--bg2);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s,border-color .35s,background .35s;cursor:default;display:flex;flex-direction:column}
+.ac:hover{transform:translateY(-7px)}
+.abar{height:3px;transition:opacity .3s;opacity:.35}
+.ac:hover .abar{opacity:1}
+.apic{height:210px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.apic img{width:100%;height:100%;object-fit:cover;object-position:top center;position:absolute;inset:0}
+.apic-fade{position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(to top,var(--bg2),transparent);z-index:1;pointer-events:none}
+.atbadge{position:absolute;top:10px;right:10px;font-size:9px;font-weight:700;letter-spacing:1px;font-family:'Syne',sans-serif;border-radius:4px;padding:3px 8px;z-index:3}
+.abody{padding:18px 20px 22px;flex:1}
+.aname{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;letter-spacing:-.5px;line-height:1;margin-bottom:2px}
+.arole{font-size:10px;font-weight:700;letter-spacing:1.5px;font-family:'Syne',sans-serif;margin-bottom:14px;text-transform:uppercase}
+.aabs{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.aab{display:flex;gap:9px;align-items:center;color:var(--muted);font-size:13px}
+.adesc{color:var(--dim);font-size:12px;line-height:1.6;border-top:1px solid rgba(255,255,255,.05);padding-top:14px}
+.sup-row{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:16px 24px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.sup-chip{display:flex;align-items:center;gap:8px;padding:7px 14px;border-radius:8px;border:1px solid var(--line);background:rgba(255,255,255,.02)}
+.sdot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.pipe-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.pipe-step{padding:30px 26px;background:var(--bg2);border:1px solid var(--line)}
+.pn{font-family:'Syne',sans-serif;font-size:50px;font-weight:800;color:rgba(255,255,255,.025);letter-spacing:-3px;line-height:1;margin-bottom:14px;user-select:none}
+.pw{font-size:9px;font-weight:700;letter-spacing:1.5px;font-family:'Syne',sans-serif;text-transform:uppercase;margin-bottom:7px}
+.pl{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--cream);letter-spacing:-.4px;margin-bottom:9px}
+.pd2{color:var(--muted);font-size:13px;line-height:1.65}
+.priv-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;background:linear-gradient(135deg,rgba(158,240,26,.04) 0%,rgba(6,10,7,0) 100%);border:1px solid rgba(158,240,26,.1);border-radius:20px;padding:60px;position:relative;overflow:hidden}
+.priv-glow{position:absolute;left:-15%;top:-25%;width:450px;height:450px;border-radius:50%;background:radial-gradient(circle,rgba(158,240,26,.04) 0%,transparent 70%);pointer-events:none}
+.pck{display:flex;gap:10px;align-items:flex-start;margin-bottom:11px}
+.pckm{color:var(--lime);flex-shrink:0;margin-top:2px;font-size:13px}.pckt{color:var(--muted);font-size:13px;line-height:1.5}
+.terminal{background:var(--bg);border-radius:12px;border:1px solid rgba(158,240,26,.1);overflow:hidden}
+.tbar{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;background:var(--bg2);border-bottom:1px solid rgba(158,240,26,.08)}
+.tdots{display:flex;gap:6px}.tdot{width:11px;height:11px;border-radius:50%;opacity:.85}
+.ttitle{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--dim)}
+.tbody{padding:18px 20px 22px;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:2.1;min-height:220px}
+.tl{opacity:0;animation:typeIn .3s ease forwards}
+.tc{color:var(--cream)}.tps{color:var(--lime)}.tok{color:var(--lime)}.tcm{color:var(--dim)}
+.tcur{color:var(--lime);animation:shimmer .6s ease-in-out infinite}
+.mission{border-radius:20px;overflow:hidden;border:1px solid rgba(158,240,26,.12);position:relative;min-height:440px;display:flex;flex-direction:column;justify-content:flex-end;background:var(--bg2)}
+.mbg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%}
+.mo1{position:absolute;inset:0;background:linear-gradient(to right,rgba(6,10,7,.97) 35%,rgba(6,10,7,.5) 100%)}
+.mo2{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,10,7,.92) 0%,transparent 55%)}
+.mglow{position:absolute;top:30%;left:38%;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(158,240,26,.05) 0%,transparent 70%);pointer-events:none}
+.mc{position:relative;padding:52px 60px;max-width:580px}
+.mhw{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(32px,5vw,60px);letter-spacing:-2.5px;line-height:1;color:var(--cream);margin-bottom:6px}
+.mhg{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(32px,5vw,60px);letter-spacing:-2.5px;line-height:1;color:var(--lime);text-shadow:0 0 50px rgba(158,240,26,.5);margin-bottom:22px}
+.mp{color:var(--muted);font-size:15px;line-height:1.75;margin-bottom:32px}
+.mbtns{display:flex;gap:12px;flex-wrap:wrap}
+.mstats{position:absolute;right:52px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px}
+.mst{background:rgba(0,0,0,.68);backdrop-filter:blur(16px);border:1px solid rgba(158,240,26,.15);border-radius:10px;padding:11px 18px;text-align:center}
+.msn{font-family:'Syne',sans-serif;font-weight:800;font-size:18px;color:var(--lime);letter-spacing:-1px}
+.msl{font-size:10px;color:var(--dim);font-weight:500}
+footer{border-top:1px solid rgba(158,240,26,.08);padding:36px 52px}
+.ft{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,.05)}
+.flogo{display:flex;align-items:center;gap:12px}.flogo img{width:28px;height:28px;border-radius:7px}
+.fn{font-family:'Syne',sans-serif;font-weight:800;font-size:13px;color:var(--cream);letter-spacing:1px;text-transform:uppercase}
+.ftag{font-size:11px;color:var(--dim);margin-top:2px}
+.flinks{display:flex;gap:24px;flex-wrap:wrap}
+.flink{color:var(--dim);font-size:13px;font-weight:500;transition:color .2s}.flink:hover{color:var(--lime)}
+.fb{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.fcopy{font-family:'JetBrains Mono',monospace;font-size:11px;color:#141F15}
+.flive{display:flex;gap:8px;align-items:center}
+.fldot{width:6px;height:6px;border-radius:50%;background:var(--lime);animation:pulse 2s ease-in-out infinite}
+.fltxt{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--lime)}
+@media(max-width:1100px){.agents-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr;padding:110px 30px 40px}.hero-img-side{display:none}.pillars-grid{grid-template-columns:repeat(2,1fr)}.agents-grid{grid-template-columns:repeat(2,1fr)}.pipe-grid{grid-template-columns:1fr 1fr}.priv-grid{grid-template-columns:1fr}.mstats{display:none}.stats-bar{grid-template-columns:repeat(3,1fr);padding:22px 30px}.section{padding:0 30px 100px}nav{padding:14px 24px}.nav-links{display:none}.mc{padding:40px 30px}footer{padding:28px 30px}.ft{flex-direction:column;align-items:flex-start}.video-section{padding:30px 30px 80px}}
+@media(max-width:600px){.agents-grid{grid-template-columns:1fr}.pillars-grid{grid-template-columns:1fr}.pipe-grid{grid-template-columns:1fr}.stats-bar{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <img src="assets/icon.png" alt="Alphonso"/>
+    <div><div class="nav-name">Alphonso</div><div class="nav-sub">Ecosystem</div></div>
+  </a>
+  <div class="nav-links">
+    <a href="#agents" class="nav-link">Agents</a>
+    <a href="#pipeline" class="nav-link">Pipeline</a>
+    <a href="#privacy" class="nav-link">Privacy</a>
+    <a href="https://github.com/Thatisshayan/AlphonsoEcosystem" target="_blank" rel="noopener" class="nav-gh">View on GitHub</a>
+  </div>
+  <a href="https://github.com/Thatisshayan/AlphonsoEcosystem/releases/tag/v1.0.0" target="_blank" rel="noopener" class="btn-lime">↓ Download Alpha</a>
+</nav>
+<section id="hero">
+  <div class="dot-grid" style="position:absolute;inset:0;pointer-events:none;-webkit-mask-image:radial-gradient(ellipse 90% 100% at 65% 50%,black 30%,transparent 80%);mask-image:radial-gradient(ellipse 90% 100% at 65% 50%,black 30%,transparent 80%)"></div>
+  <div class="scanline"></div>
+  <div style="position:absolute;left:0;top:20%;width:2px;height:60%;background:linear-gradient(to bottom,transparent,rgba(158,240,26,.4),transparent);pointer-events:none"></div>
+  <div class="hero-grid">
+    <div>
+      <div class="hero-badges">
+        <span class="badge on"><span class="bdot"></span>AI-POWERED</span>
+        <span class="badge"><span class="bdot"></span>LOCAL-FIRST</span>
+        <span class="badge"><span class="bdot"></span>MISSION DRIVEN</span>
+      </div>
+      <div style="margin-bottom:22px;animation:fadeUp .8s cubic-bezier(.16,1,.3,1) .25s both">
+        <div class="h1-w">ONE ECOSYSTEM.</div>
+        <div class="h1-g">INFINITE IMPACT.</div>
+      </div>
+      <div style="margin-bottom:22px;animation:fadeUp .7s cubic-bezier(.16,1,.3,1) .35s both">
+        <div class="h1-d">So we built you</div>
+        <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:6px">
+          <div class="cycle-wrap" id="cw"></div>
+          <div id="cb" class="cy-badge"></div>
+        </div>
+      </div>
+      <p class="hero-desc" style="animation:fadeIn .7s ease .5s both">Alphonso is a local-first AI operating environment that coordinates 9 specialized agents to research, create, execute, govern, and automate — while you stay in control.</p>
+      <div class="hero-btns" style="animation:fadeUp .6s cubic-bezier(.16,1,.3,1) .55s both">
+        <a href="https://github.com/Thatisshayan/AlphonsoEcosystem/releases/tag/v1.0.0" target="_blank" rel="noopener" class="btn-lime">↓ Download Alpha</a>
+        <a href="https://github.com/Thatisshayan/AlphonsoEcosystem" target="_blank" rel="noopener" class="btn-ghost">⊞ View on GitHub</a>
+      </div>
+      <div class="hero-sub" style="animation:fadeIn .6s ease .7s both">
+        <a href="https://github.com/Thatisshayan/AlphonsoEcosystem" target="_blank" rel="noopener" class="gh-pill">⊙ Source on GitHub</a>
+        <div style="height:18px;width:1px;background:rgba(255,255,255,.07)"></div>
+        <span style="font-size:12px;color:var(--dim)">Built by an independent founder, <span style="color:var(--lime)">driven by a mission.</span></span>
+      </div>
+    </div>
+    <div class="hero-img-side" style="animation:fadeIn 1s ease .3s both">
+      <div class="hex-float">
+        <svg width="88" height="101" viewBox="0 0 60 69" fill="none" style="filter:drop-shadow(0 0 20px rgba(158,240,26,.95))">
+          <path d="M30 2 L58 18 L58 51 L30 67 L2 51 L2 18 Z" stroke="#9EF01A" stroke-width="2.5" fill="rgba(158,240,26,0.09)"/>
+          <text x="30" y="46" text-anchor="middle" fill="#9EF01A" font-size="30" font-family="Syne,sans-serif" font-weight="800" letter-spacing="-1">M</text>
+        </svg>
+      </div>
+      <div class="hero-card">
+        <img src="assets/hero-crew.png" alt="The Alphonso Crew"/>
+        <div class="card-ot"></div><div class="card-ob"></div>
+        <div class="live-badge"><span class="ldot"></span><span class="ltxt">9 AGENTS ACTIVE</span></div>
+        <div class="ver">v1.0.0</div>
+      </div>
+    </div>
+  </div>
+  <div class="stats-bar" style="animation:fadeIn .8s ease .9s both">
+    <div class="stat"><div class="sn">9</div><div class="sl">Specialized Agents</div></div>
+    <div class="stat"><div class="sn">13</div><div class="sl">Live Connectors</div></div>
+    <div class="stat"><div class="sn">1,015</div><div class="sl">Tests Passing</div></div>
+    <div class="stat"><div class="sn">100%</div><div class="sl">Local &amp; Private</div></div>
+    <div class="stat"><div class="sn">v1.0</div><div class="sl">Released June 2026</div></div>
+  </div>
+</section>
+<div class="video-section reveal">
+  <div class="video-wrap">
+    <video autoplay muted loop playsinline>
+      <source src="assets/mission.mp4" type="video/mp4"/>
+    </video>
+    <div class="video-overlay">
+      <div class="video-label">The Alphonso Mission</div>
+      <div class="video-sub">9 agents. One purpose. No compromises.</div>
+    </div>
+  </div>
+</div>
+<div id="pillars"><div class="pillars-grid" id="pillarsGrid"></div></div>
+<section id="agents" class="section">
+  <div style="margin-bottom:52px" class="reveal">
+    <div class="label-tag">The Team</div>
+    <h2 class="sec-h2">Meet the Agents of Alphonso</h2>
+    <p class="sec-p">Nine specialized AI agents. Each with a mission. Working together as one seamless ecosystem.</p>
+  </div>
+  <div class="agents-grid" id="agentsGrid"></div>
+  <div class="sup-row reveal">
+    <span style="color:var(--dim);font-size:12px;font-weight:500;margin-right:6px">Also in the team:</span>
+    <div class="sup-chip"><span class="sdot" style="background:#52CBA0;box-shadow:0 0 7px #52CBA0"></span><div><div style="font-family:Syne,sans-serif;font-weight:700;font-size:13px;color:#52CBA0">Hector</div><div style="font-size:10px;color:var(--dim)">Research Agent</div></div></div>
+    <div class="sup-chip"><span class="sdot" style="background:#60B8E8;box-shadow:0 0 7px #60B8E8"></span><div><div style="font-family:Syne,sans-serif;font-weight:700;font-size:13px;color:#60B8E8">Echo</div><div style="font-size:10px;color:var(--dim)">Memory Agent</div></div></div>
+    <div class="sup-chip"><span class="sdot" style="background:#FF6060;box-shadow:0 0 7px #FF6060"></span><div><div style="font-family:Syne,sans-serif;font-weight:700;font-size:13px;color:#FF6060">Sentinel</div><div style="font-size:10px;color:var(--dim)">Security Agent</div></div></div>
+    <div class="sup-chip"><span class="sdot" style="background:#FFD040;box-shadow:0 0 7px #FFD040"></span><div><div style="font-family:Syne,sans-serif;font-weight:700;font-size:13px;color:#FFD040">Nova</div><div style="font-size:10px;color:var(--dim)">Intelligence Agent</div></div></div>
+  </div>
+</section>
+<section id="pipeline" class="section">
+  <div style="margin-bottom:52px" class="reveal">
+    <div class="label-tag">Built to Execute</div>
+    <h2 class="sec-h2">Powerful Modules.<br><span style="color:rgba(237,238,230,.18)">Unified by Purpose.</span></h2>
+    <p class="sec-p">A durable orchestration pipeline with state transitions, dead-letter replay, and approval gates at every risk point.</p>
+  </div>
+  <div class="pipe-grid" id="pipeGrid"></div>
+</section>
+<section id="privacy" class="section">
+  <div class="priv-grid">
+    <div class="priv-glow"></div>
+    <div class="reveal-l">
+      <div class="label-tag">Local-First Operating Environment</div>
+      <h2 style="font-family:Syne,sans-serif;font-weight:800;font-size:clamp(28px,3.5vw,44px);letter-spacing:-2px;color:var(--cream);line-height:1.1;margin-bottom:18px">Your AI.<br>Your Machine.<br>Your Rules.</h2>
+      <p style="color:var(--muted);font-size:14px;line-height:1.8;margin-bottom:26px">Alphonso runs locally on your desktop. No cloud lock-in. No data leakage. You stay in control with approval-gated execution and full visibility.</p>
+      <div>
+        <div class="pck"><span class="pckm">✓</span><span class="pckt">Ollama local inference — no external API for core LLM</span></div>
+        <div class="pck"><span class="pckm">✓</span><span class="pckt">SQLite memory stored entirely on your device</span></div>
+        <div class="pck"><span class="pckm">✓</span><span class="pckt">Fail-closed policy gate on every outbound connector</span></div>
+        <div class="pck"><span class="pckm">✓</span><span class="pckt">Approval required before any data leaves your machine</span></div>
+      </div>
+    </div>
+    <div class="reveal-r">
+      <div class="terminal">
+        <div class="tbar">
+          <div class="tdots"><div class="tdot" style="background:#FF5F57"></div><div class="tdot" style="background:#FEBC2E"></div><div class="tdot" style="background:#28C840"></div></div>
+          <div class="ttitle">alphonso — local env</div><div></div>
+        </div>
+        <div class="tbody" id="termBody"><span class="tcur">▋</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="mission reveal">
+    <img class="mbg" src="assets/cta-sunset.png" alt=""/>
+    <div class="mo1"></div><div class="mo2"></div><div class="mglow"></div>
+    <div class="mc">
+      <div class="label-tag">Mission Driven</div>
+      <div class="mhw">Be Part of</div>
+      <div class="mhg">Something Bigger.</div>
+      <p class="mp">Together, we execute, engage, and deliver infinite impact across the world.</p>
+      <div class="mbtns">
+        <a href="https://github.com/Thatisshayan/AlphonsoEcosystem/releases/tag/v1.0.0" target="_blank" rel="noopener" class="btn-lime">Join the Mission →</a>
+        <a href="https://github.com/Thatisshayan/AlphonsoEcosystem/blob/main/docs/GETTING_STARTED.md" target="_blank" rel="noopener" class="btn-ghost">View Roadmap →</a>
+      </div>
+    </div>
+    <div class="mstats">
+      <div class="mst"><div class="msn">v1.0</div><div class="msl">June 2026</div></div>
+      <div class="mst"><div class="msn">MIT</div><div class="msl">Open Source</div></div>
+      <div class="mst"><div class="msn">9</div><div class="msl">AI Agents</div></div>
+      <div class="mst"><div class="msn">13</div><div class="msl">Connectors</div></div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="ft">
+    <div class="flogo"><img src="assets/icon.png" alt="Alphonso"/><div><div class="fn">Alphonso Ecosystem</div><div class="ftag">One ecosystem, Infinite impact. Execute. Engage. Deliver.</div></div></div>
+    <div class="flinks">
+      <a href="https://github.com/Thatisshayan/AlphonsoEcosystem" target="_blank" rel="noopener" class="flink">GitHub</a>
+      <a href="https://github.com/Thatisshayan/AlphonsoEcosystem/releases" target="_blank" rel="noopener" class="flink">Releases</a>
+      <a href="https://github.com/Thatisshayan/AlphonsoEcosystem/blob/main/docs/GETTING_STARTED.md" target="_blank" rel="noopener" class="flink">Docs</a>
+      <a href="https://github.com/Thatisshayan/AlphonsoEcosystem/blob/main/ARCHITECTURE.md" target="_blank" rel="noopener" class="flink">Architecture</a>
+    </div>
+  </div>
+  <div class="fb">
+    <div class="fcopy">MIT License · 2026 · 9 agents · 13 connectors · 1,015 tests passing</div>
+    <div class="flive"><span class="fldot"></span><span class="fltxt">v1.0.0 LIVE</span></div>
+  </div>
+</footer>
+<script>
+var AGENTS=[
+  {id:'jose',name:'Jose',title:'ORCHESTRATOR',color:'#F5B535',rgb:'245,181,53',img:'assets/jose.png',abs:['Route & Coordinate','Plan & Delegate','Monitor & Adapt','Confirm & Report'],desc:'Every task flows through Jose. He routes, assigns, merges, and confirms. The brain of the operation.'},
+  {id:'alphonso',name:'Alphonso',title:'EXECUTION AGENT',color:'#00C8E0',rgb:'0,200,224',img:'assets/alphonso.png',abs:['Strategize','Align','Delegate','Execute'],desc:'Runs tasks, verifies output, packages deliverables. Nothing ships without his approval.'},
+  {id:'miya',name:'Miya',title:'CREATIVE AGENT',color:'#B060FF',rgb:'176,96,255',img:'assets/miya.png',abs:['Create','Design','Write','Inspire'],desc:'Scripts, storyboards, creative strategy, and export-ready deliverables. Turns a brief into a finished piece.'},
+  {id:'marcus',name:'Marcus',title:'DISTRIBUTION AGENT',color:'#3ED464',rgb:'62,212,100',img:'assets/marcus.png',abs:['Distribute','Amplify','Engage','Analyze'],desc:"Once Marcus runs it, it's live — YouTube, Telegram, WhatsApp, Meta. Approved paths only."},
+  {id:'maria',name:'Maria',title:'GOVERNANCE AGENT',color:'#B0B8C0',rgb:'176,184,192',img:'assets/maria.png',abs:['Govern','Verify','Audit','Ensure'],desc:'Nothing risky moves without Maria. Audit trails, risk scoring, and approval gates at every step.'},
+];
+var PILLARS=[
+  {icon:'🖥',t:'Local-First',d:'Your data never leaves your machine.'},
+  {icon:'🔒',t:'Privacy by Design',d:'Built for privacy, security, and transparency.'},
+  {icon:'✓',t:'Approval-Gated',d:'You approve what matters. Agents execute.'},
+  {icon:'👤',t:'Supervised Execution',d:'Human-in-the-loop. Always.'},
+  {icon:'⚡',t:'Open & Extensible',d:'Modular by design. Community driven.'},
+];
+var PIPELINE=[
+  {n:'01',who:'You',l:'Assign the mission',d:'Type, speak, or send via Telegram or WhatsApp.',c:'#9EF01A'},
+  {n:'02',who:'Jose',l:'Route & decompose',d:'Every task broken into packets and assigned to agents.',c:'#F5B535'},
+  {n:'03',who:'Crew',l:'Parallel execution',d:'Hector researches. Miya creates. Nova scores. All at once.',c:'#00C8E0'},
+  {n:'04',who:'Maria',l:'Governance review',d:'Risk scored. High-stakes actions require your approval.',c:'#B0B8C0'},
+  {n:'05',who:'Marcus',l:'Distribute output',d:'Approved content goes live across all your channels.',c:'#3ED464'},
+  {n:'06',who:'Echo',l:'Memory recorded',d:'Every decision, receipt, and event stored in SQLite.',c:'#60B8E8'},
+];
+var TERM=[
+  {cmd:true,t:'ollama pull llama3.2:3b'},{cmd:false,ok:true,t:'Model downloaded — 100% local, zero API calls'},
+  {cmd:true,t:'npm run dev'},{cmd:false,ok:true,t:'Alphonso running at localhost:5173'},
+  {cmd:true,t:'npm run tauri build'},{cmd:false,ok:true,t:'Desktop installer built — 0 bytes sent to cloud'},
+  {cmd:false,ok:false,t:'# Your machine. Your crew. Your rules.'},
+];
+window.addEventListener('scroll',function(){document.getElementById('nav').classList.toggle('scrolled',window.scrollY>50);},{passive:true});
+(function(){
+  var w=document.getElementById('cw'),b=document.getElementById('cb'),idx=0;
+  AGENTS.forEach(function(a,i){var el=document.createElement('div');el.className='cy'+(i===0?' on':'');el.style.color=a.color;el.style.textShadow='0 0 40px rgba('+a.rgb+',.4)';el.textContent=a.name;w.appendChild(el);});
+  function go(i){var items=w.querySelectorAll('.cy');items[idx].classList.remove('on');items[idx].classList.add('out');setTimeout(function(){items[idx].classList.remove('out');},380);items[i].classList.add('on');var a=AGENTS[i];b.textContent=a.title;b.style.color=a.color;b.style.background='rgba('+a.rgb+',.1)';b.style.borderColor='rgba('+a.rgb+',.3)';idx=i;}
+  go(0);b.textContent=AGENTS[0].title;b.style.color=AGENTS[0].color;b.style.background='rgba('+AGENTS[0].rgb+',.1)';b.style.borderColor='rgba('+AGENTS[0].rgb+',.3)';
+  setInterval(function(){go((idx+1)%AGENTS.length);},1900);
+})();
+(function(){var g=document.getElementById('pillarsGrid');PILLARS.forEach(function(p,i){var d=document.createElement('div');d.className='pillar reveal';d.style.transitionDelay=(i*.07)+'s';d.innerHTML='<div class="pi">'+p.icon+'</div><div class="pt">'+p.t+'</div><div class="pd">'+p.d+'</div>';g.appendChild(d);});})();
+(function(){
+  var g=document.getElementById('agentsGrid');
+  AGENTS.forEach(function(a,i){
+    var card=document.createElement('div');card.className='ac reveal';card.style.transitionDelay=(i*.07)+'s';
+    card.innerHTML='<div class="abar" style="background:linear-gradient(90deg,'+a.color+',transparent);opacity:.35"></div><div class="apic" style="background:linear-gradient(160deg,rgba('+a.rgb+',.1) 0%,var(--bg2) 100%)"><img src="'+a.img+'" alt="'+a.name+'"/><div class="apic-fade"></div><div class="atbadge" style="color:'+a.color+';background:rgba('+a.rgb+',.12);border:1px solid rgba('+a.rgb+',.3)">'+a.title+'</div></div><div class="abody"><div class="aname" style="color:'+a.color+'">'+a.name.toUpperCase()+'</div><div class="arole" style="color:rgba('+a.rgb+',.55)">'+a.title+'</div><div class="aabs">'+a.abs.map(function(ab){return '<div class="aab"><span style="font-size:8px;color:'+a.color+'">▶</span>'+ab+'</div>';}).join('')+'</div><div class="adesc">'+a.desc+'</div></div>';
+    card.addEventListener('mouseenter',function(){card.style.background='rgba('+a.rgb+',.07)';card.style.borderColor='rgba('+a.rgb+',.5)';card.style.boxShadow='0 16px 60px rgba('+a.rgb+',.2)';card.querySelector('.abar').style.opacity='1';});
+    card.addEventListener('mouseleave',function(){card.style.background='var(--bg2)';card.style.borderColor='var(--line)';card.style.boxShadow='none';card.querySelector('.abar').style.opacity='.35';});
+    g.appendChild(card);
+  });
+})();
+(function(){var g=document.getElementById('pipeGrid');PIPELINE.forEach(function(s,i){var d=document.createElement('div');d.className='pipe-step reveal';d.style.transitionDelay=(i*.08)+'s';d.innerHTML='<div class="pn">'+s.n+'</div><div class="pw" style="color:'+s.c+'">'+s.who+'</div><div class="pl">'+s.l+'</div><div class="pd2">'+s.d+'</div>';g.appendChild(d);});})();
+(function(){var started=false;function run(){if(started)return;started=true;var body=document.getElementById('termBody');body.innerHTML='';TERM.forEach(function(l,i){setTimeout(function(){var div=document.createElement('div');div.className='tl';if(l.cmd)div.innerHTML='<span class="tps">$ </span><span class="tc">'+l.t+'</span>';else if(l.ok)div.innerHTML='<span class="tok">✓ '+l.t+'</span>';else div.innerHTML='<span class="tcm">'+l.t+'</span>';body.appendChild(div);if(i<TERM.length-1){var cur=document.createElement('span');cur.className='tcur';cur.textContent='▋';body.appendChild(cur);setTimeout(function(){if(cur.parentNode)cur.parentNode.removeChild(cur);},370);}},i*430);});}
+var obs=new IntersectionObserver(function(e){if(e[0].isIntersecting)run();},{threshold:.2});var s=document.getElementById('privacy');if(s)obs.observe(s);})();
+(function(){var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.08,rootMargin:'0px 0px -30px 0px'});document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(function(el){obs.observe(el);});})();
+</script>
+</body>
+</html>
