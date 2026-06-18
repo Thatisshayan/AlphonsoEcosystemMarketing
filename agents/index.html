@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title id="ptitle">Agent — Alphonso Ecosystem</title>
+<meta name="description" id="pdesc" content="Meet the crew."/>
+<link rel="icon" href="../assets/favicon.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#060A07;--bg2:#0C110D;--bg3:#0F160F;--lime:#9EF01A;--cream:#EDEEE6;--mut:#56625A;--dim:#232E24;--ac:#9EF01A;--acr:158,240,26}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--cream);font-family:'Inter',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:14px}
+::selection{background:var(--ac);color:#000}
+::-webkit-scrollbar{width:2px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--ac)}
+a{text-decoration:none;color:inherit}img{max-width:100%;display:block}
+@keyframes fu{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fi{from{opacity:0}to{opacity:1}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(var(--acr),.5)}50%{box-shadow:0 0 0 5px rgba(var(--acr),0)}}
+.rv{opacity:0;transform:translateY(16px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
+.rv.v{opacity:1;transform:translateY(0)}
+.lt{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--ac);display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.lt::before{content:'';display:block;width:14px;height:1px;background:var(--ac)}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:11px 48px;display:flex;align-items:center;justify-content:space-between;background:rgba(6,10,7,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(var(--acr),.1)}
+.nback{display:flex;align-items:center;gap:8px;color:var(--mut);font-size:12px;font-weight:500;transition:color .2s}
+.nback:hover{color:var(--cream)}.nback span{font-size:14px}
+.ncrew{display:flex;gap:6px;align-items:center;overflow-x:auto;max-width:60vw}
+.ncrew::-webkit-scrollbar{display:none}
+.na{display:flex;align-items:center;gap:5px;padding:4px 10px;border-radius:5px;font-family:'Syne',sans-serif;font-size:10px;font-weight:700;transition:all .2s;white-space:nowrap;border:1px solid transparent;cursor:pointer}
+.na.active{border:1px solid rgba(var(--acr),.35)}
+.na:hover{background:rgba(255,255,255,.04)}
+.na img{width:18px;height:18px;border-radius:50%;object-fit:cover;object-position:top}
+.bl{display:inline-flex;align-items:center;gap:6px;background:var(--lime);color:#000;font-family:'Syne',sans-serif;font-weight:800;font-size:11px;padding:7px 16px;border-radius:6px;transition:all .2s;border:none;cursor:pointer}
+.bl:hover{opacity:.9;transform:translateY(-1px)}
+/* HERO */
+#hero{min-height:90vh;position:relative;overflow:hidden;display:flex;align-items:flex-end}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center}
+.hero-bg-fallback{position:absolute;inset:0}
+.hero-ov{position:absolute;inset:0;background:linear-gradient(to right,rgba(6,10,7,.97) 35%,rgba(6,10,7,.4) 100%)}
+.hero-ov2{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,10,7,1) 0%,transparent 60%)}
+.hero-content{position:relative;z-index:2;padding:0 52px 60px;max-width:640px;animation:fu .9s cubic-bezier(.16,1,.3,1) .2s both}
+.hero-relation{display:inline-flex;align-items:center;gap:7px;padding:5px 12px;border-radius:100px;font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.5px;margin-bottom:20px;border:1px solid rgba(var(--acr),.3);background:rgba(var(--acr),.06);color:var(--ac)}
+.hero-name{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(44px,7vw,80px);letter-spacing:-3px;line-height:.92;color:var(--cream);margin-bottom:6px}
+.hero-role{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:20px}
+.hero-tagline{font-size:17px;font-style:italic;color:rgba(237,238,230,.55);line-height:1.5;max-width:480px;border-left:2px solid var(--ac);padding-left:16px;margin-bottom:28px}
+/* SECTIONS */
+.sec{padding:64px 52px}
+.sec.alt{background:var(--bg2)}
+.sh2{font-family:'Syne',sans-serif;font-weight:800;font-size:22px;letter-spacing:-1px;color:var(--cream);line-height:1.1;margin-bottom:16px}
+/* STORY */
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.story-text{font-size:14px;line-height:1.85;color:var(--mut)}
+.story-text p{margin-bottom:16px}
+.story-text p:last-child{margin-bottom:0}
+.personality-card{background:rgba(var(--acr),.04);border:1px solid rgba(var(--acr),.12);border-radius:10px;padding:22px}
+.pc-label{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--ac);margin-bottom:12px}
+.pc-text{font-size:13px;line-height:1.7;color:var(--mut);font-style:italic}
+/* CAPABILITIES */
+.cap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:24px}
+.cap{padding:18px 16px;background:var(--bg3);border-radius:8px;border-left:2px solid var(--ac)}
+.cap-title{font-family:'Syne',sans-serif;font-weight:700;font-size:12px;color:var(--cream);margin-bottom:5px}
+.cap-desc{font-size:11px;color:var(--mut);line-height:1.55}
+/* WORKS WITH */
+.ww-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:24px}
+.ww-card{padding:14px;background:var(--bg3);border-radius:8px;border:1px solid transparent;transition:all .2s;cursor:pointer;text-align:center}
+.ww-card:hover{transform:translateY(-3px)}
+.ww-img{width:52px;height:52px;border-radius:50%;object-fit:cover;object-position:top;margin:0 auto 8px}
+.ww-img-fb{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:18px;margin:0 auto 8px}
+.ww-name{font-family:'Syne',sans-serif;font-weight:700;font-size:12px;margin-bottom:2px}
+.ww-role{font-size:9px;color:var(--dim)}
+/* WORKFLOW */
+.wf-steps{display:flex;flex-direction:column;gap:0;position:relative;max-width:600px;margin-top:24px}
+.wf-steps::before{content:'';position:absolute;left:16px;top:32px;bottom:32px;width:1px;background:linear-gradient(to bottom,rgba(var(--acr),.4),rgba(var(--acr),.08))}
+.wf-step{display:grid;grid-template-columns:34px 1fr;gap:16px;padding:14px 0}
+.wf-n{width:34px;height:34px;border-radius:50%;border:1px solid rgba(var(--acr),.35);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:10px;font-weight:800;color:var(--ac);background:var(--bg2);position:relative;z-index:1;flex-shrink:0}
+.wf-body{padding-top:6px}
+.wf-label{font-family:'Syne',sans-serif;font-weight:700;font-size:13px;color:var(--cream);margin-bottom:4px}
+.wf-desc{font-size:12px;color:var(--mut);line-height:1.6}
+/* CONNECTORS */
+.conn-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.conn{padding:6px 14px;border-radius:5px;font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.3px;background:var(--bg3);border:1px solid rgba(255,255,255,.07);color:var(--mut)}
+/* CTA */
+.agent-cta{background:linear-gradient(135deg,rgba(var(--acr),.04),rgba(6,10,7,0));border:1px solid rgba(var(--acr),.1);border-radius:14px;padding:44px;text-align:center;position:relative;overflow:hidden}
+.cta-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:400px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(var(--acr),.05) 0%,transparent 70%);pointer-events:none}
+/* FOOTER */
+footer{border-top:1px solid rgba(var(--acr),.07);padding:24px 52px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.flinks{display:flex;gap:18px}
+.flink{color:var(--dim);font-size:11px;transition:color .2s}.flink:hover{color:var(--lime)}
+/* RESPONSIVE */
+@media(max-width:900px){nav{padding:10px 18px}.ncrew{max-width:45vw}.sec{padding:48px 24px}.story-grid{grid-template-columns:1fr}.cap-grid{grid-template-columns:1fr 1fr}.ww-grid{grid-template-columns:repeat(2,1fr)}.hero-content{padding:0 24px 48px}footer{padding:20px 24px}.hero-tagline{font-size:15px}}
+@media(max-width:600px){.cap-grid{grid-template-columns:1fr}.ww-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<!-- NAV -->
+<nav>
+  <a href="../" class="nback"><span>←</span> Back to the Crew</a>
+  <div class="ncrew" id="ncrew"></div>
+  <a href="https://github.com/Thatisshayan/AlphonsoEcosystem/releases/tag/v2.0.0" target="_blank" rel="noopener" class="bl">↓ Download Alphonso</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div id="hero-bg-wrap"></div>
+  <div class="hero-ov"></div>
+  <div class="hero-ov2"></div>
+  <div class="hero-content">
+    <div class="hero-relation" id="h-relation"></div>
+    <div class="hero-name" id="h-name"></div>
+    <div class="hero-role" id="h-role"></div>
+    <div class="hero-tagline" id="h-tagline"></div>
+    <a href="https://github.com/Thatisshayan/AlphonsoEcosystem/releases/tag/v2.0.0" target="_blank" rel="noopener" class="bl">↓ Download Alphonso</a>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="sec" id="s-story">
+  <div class="story-grid">
+    <div>
+      <div class="lt" id="st-label">The Story</div>
+      <h2 class="sh2" id="st-h2"></h2>
+      <div class="story-text" id="st-text"></div>
+    </div>
+    <div>
+      <div class="personality-card rv">
+        <div class="pc-label">Personality</div>
+        <div class="pc-text" id="st-personality"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAPABILITIES -->
+<section class="sec alt rv">
+  <div class="lt">Capabilities</div>
+  <h2 class="sh2">What <span id="cap-name"></span> does</h2>
+  <div class="cap-grid" id="cap-grid"></div>
+</section>
+
+<!-- WORKS WITH -->
+<section class="sec rv">
+  <div class="lt">Works With</div>
+  <h2 class="sh2">The inner circle</h2>
+  <p style="color:var(--mut);font-size:13px;margin-bottom:0" id="ww-desc"></p>
+  <div class="ww-grid" id="ww-grid"></div>
+</section>
+
+<!-- CONNECTORS -->
+<section class="sec alt rv">
+  <div class="lt">Connectors</div>
+  <h2 class="sh2">Tools of the trade</h2>
+  <p style="color:var(--mut);font-size:13px;margin-bottom:4px" id="conn-desc"></p>
+  <div class="conn-grid" id="conn-grid"></div>
+</section>
+
+<!-- WORKFLOW -->
+<section class="sec rv">
+  <div class="lt">Example Workflow</div>
+  <h2 class="sh2" id="wf-title"></h2>
+  <p style="color:var(--mut);font-size:13px;margin-bottom:0" id="wf-scenario"></p>
+  <div class="wf-steps" id="wf-steps"></div>
+</section>
+
+<!-- CTA -->
+<section class="sec alt">
+  <div class="agent-cta rv">
+    <div class="cta-glow"></div>
+    <div class="lt" style="justify-content:center">Ready to meet the crew?</div>
+    <h2 style="font-family:Syne,sans-serif;font-weight:800;font-size:clamp(22px,3vw,36px);letter-spacing:-1.5px;color:var(--cream);margin-bottom:10px">Download Alphonso.<br><span id="cta-name-line"></span></h2>
+    <p style="color:var(--mut);font-size:13px;max-width:400px;margin:0 auto 24px;line-height:1.7" id="cta-desc"></p>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <a href="https://github.com/Thatisshayan/AlphonsoEcosystem/releases/tag/v2.0.0" target="_blank" rel="noopener" class="bl">↓ Download Alphonso v2</a>
+      <a href="../" style="display:inline-flex;align-items:center;gap:6px;background:transparent;color:var(--cream);font-family:Syne,sans-serif;font-weight:600;font-size:12px;padding:7px 16px;border-radius:6px;border:1px solid rgba(255,255,255,.11);transition:all .2s">← Meet the whole crew</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <a href="../" style="display:flex;align-items:center;gap:8px;color:var(--mut);font-size:12px">
+    <svg width="18" height="20" viewBox="0 0 60 69" fill="none"><path d="M30 2 L58 18 L58 51 L30 67 L2 51 L2 18 Z" stroke="#9EF01A" stroke-width="2.5" fill="rgba(158,240,26,.06)"/><text x="30" y="46" text-anchor="middle" fill="#9EF01A" font-size="30" font-family="Syne,sans-serif" font-weight="800">M</text></svg>
+    Alphonso Ecosystem
+  </a>
+  <div class="flinks">
+    <a href="../" class="flink">← Back to crew</a>
+    <a href="https://github.com/Thatisshayan/AlphonsoEcosystem" target="_blank" rel="noopener" class="flink">GitHub</a>
+    <a href="https://github.com/Thatisshayan/AlphonsoEcosystem/releases" target="_blank" rel="noopener" class="flink">Releases</a>
+  </div>
+</footer>
+<script>
+var CREW = {
+  alphonso:{
+    name:'Alphonso',role:'Execution Agent',relation:'The Main Guy — Son of Jose & Maria',emoji:'⚡',
+    color:'#00C8E0',rgb:'0,200,224',img:'../assets/alphonso.png',
+    tagline:'"I don\'t talk about it. I execute it."',
+    story:[
+      "Alphonso grew up watching his dad Jose orchestrate everything from the kitchen table and his mom Maria make sure not a single thing left the house unchecked. He inherited both — Jose\'s ability to see the full picture, and Maria\'s refusal to let anything ship broken.",
+      "He\'s not the loudest in the room. He doesn\'t need to be. While everyone else is still discussing the plan, Alphonso is already three steps in. He doesn\'t celebrate until it ships, and he doesn\'t ship until it\'s right.",
+      "The crew doesn\'t work for him. He\'s always clear about that. They work together. He just makes sure the thing actually gets done."
+    ],
+    personality:"Quiet confidence. Execution-first. Allergic to meetings that could\'ve been a task. The one everyone else measures themselves against.",
+    caps:[
+      {t:'Local Execution',d:'Runs all tasks directly on your machine. No cloud, no API calls, no data leaving.'},
+      {t:'Output Verification',d:'Checks every result before packaging. Doesn\'t pass garbage downstream.'},
+      {t:'Deliverable Packaging',d:'Wraps outputs cleanly for distribution or storage. Always receipt-confirmed.'},
+      {t:'GitHub Integration',d:'Code search, issue management, PR review, repo analysis. Since v2.0.0.'},
+      {t:'Slack Coordination',d:'Messages, channels, file sharing, notifications. Since v2.0.0.'},
+      {t:'Approval Handoff',d:'Flags high-risk actions to Maria before executing. Doesn\'t skip the gate.'},
+    ],
+    connectors:['Ollama (local LLM)','GitHub','Slack','ClickUp'],
+    connDesc:"Alphonso works locally first. His GitHub and Slack integrations arrived in v2.0.0 — now he can touch code and communicate across the team without leaving the machine.",
+    worksWith:['jose','maria','miya','marcus'],
+    wwDesc:"He takes orders from Dad, gets reviewed by Mom, hands creative work to his sister, and feeds approved output to his loud cousin Marcus.",
+    wf:{
+      title:'A content launch, start to finish',
+      scenario:'Task arrives: "Research AI trends and write a LinkedIn post." Here\'s what Alphonso does.',
+      steps:[
+        {l:'Receives task from Jose',d:'Jose decomposes the request and assigns the research component to Hector, the writing to Miya, and the execution oversight to Alphonso.'},
+        {l:'Coordinates parallel work',d:'Alphonso tracks Hector\'s research and Miya\'s draft simultaneously. Neither knows the other is running.'},
+        {l:'Merges the output',d:'Hector\'s findings feed into Miya\'s draft. Alphonso verifies the combined output makes sense before passing it forward.'},
+        {l:'Flags for Maria',d:'Before anything touches a channel, Alphonso raises it to Maria for governance review. Mom\'s approval is non-negotiable.'},
+        {l:'Packages and ships',d:'Once approved, Alphonso packages the post for Marcus to distribute. Logs everything to Echo. Done.'},
+      ]
+    },
+    ctaLine:'The whole crew comes with him.',
+    ctaDesc:"When you download Alphonso, you get all nine agents. Local-first, approval-gated, and built to execute without you having to babysit every step."
+  },
+
+  jose:{
+    name:'Jose',role:'Orchestrator',relation:'The Dad — Father of Alphonso & Miya',emoji:'🎯',
+    color:'#F5B535',rgb:'245,181,53',img:'../assets/jose.png',
+    tagline:'"Tell me the task. I\'ll tell you who handles it."',
+    story:[
+      "Jose was running the operation before Alphonso could spell his own name. He\'s the kind of dad who doesn\'t raise his voice — he doesn\'t have to. One look from Jose and everyone knows what they\'re supposed to be doing.",
+      "He\'s seen every kind of problem: overlapping tasks, agents working against each other, requests that should\'ve been two tasks not one. He built his routing system from all of it. Intake, decompose, assign, confirm. Four steps. Works every time.",
+      "His relationship with Hector is particularly tight — Jose trusts the shy cousin\'s research more than anyone\'s, because Hector never shares unless he\'s certain. That\'s the kind of quality control Jose built his whole system around."
+    ],
+    personality:"Measured. Unflappable. Has a plan before you finish the sentence. Never panics, never improvises without reason. The calmest person in any crisis.",
+    caps:[
+      {t:'Task Intake',d:'Receives tasks from any input — text, voice, Telegram, WhatsApp — and immediately starts decomposing.'},
+      {t:'Mission Decomposition',d:'Breaks complex requests into discrete, assignable packets. No ambiguity, no overlap.'},
+      {t:'Agent Routing',d:'Knows exactly which agent handles which job. Routes with precision, not guesswork.'},
+      {t:'Concurrency Control',d:'Manages parallel execution — knows when to run agents simultaneously and when to sequence.'},
+      {t:'Merge & Confirm',d:'Assembles outputs from multiple agents into a coherent result before handoff.'},
+      {t:'Status Reporting',d:'Keeps you informed without overwhelming. Progress when it matters, silence when it doesn\'t.'},
+    ],
+    connectors:['Telegram','WhatsApp','ClickUp','Notion'],
+    connDesc:"Jose accepts tasks wherever you send them. Telegram and WhatsApp are his preferred inbound channels — he\'s always available, always ready to route.",
+    worksWith:['alphonso','maria','hector','miya'],
+    wwDesc:"Jose orchestrates the whole family. He coordinates most closely with Alphonso (execution), Maria (governance), and Hector (research quality control).",
+    wf:{
+      title:'One task. Six agents. Zero chaos.',
+      scenario:'You send: "Write and publish a weekly newsletter about our product." Jose takes it from there.',
+      steps:[
+        {l:'Parses the full scope',d:'Jose recognises this involves research (Hector), writing (Miya), scoring (Nova), governance (Maria), distribution (Marcus), and memory (Echo).'},
+        {l:'Creates task packets',d:'Breaks it into six discrete jobs with dependencies mapped. Hector runs first, feeds Miya. Nova scores Miya\'s draft. Maria reviews. Marcus distributes. Echo logs.'},
+        {l:'Routes and activates',d:'Dispatches all agents with their specific instructions. Parallel where possible, sequenced where necessary.'},
+        {l:'Monitors and adjusts',d:'Watches progress across all agents. If Hector is slow, Jose adjusts Miya\'s start. He doesn\'t let one bottleneck kill the whole mission.'},
+        {l:'Confirms completion',d:'Once all outputs are merged and approved, Jose confirms to you that the mission is done. No loose ends.'},
+      ]
+    },
+    ctaLine:'The whole family runs on Jose.',
+    ctaDesc:"Without Jose, you\'d have nine agents going in nine directions. He\'s the reason they move like one team."
+  }
+};
+</script>
+<script>
+Object.assign(CREW,{
+  miya:{
+    name:'Miya',role:'Creative Agent',relation:"Alphonso's Little Sister",emoji:'✦',
+    color:'#B060FF',rgb:'176,96,255',img:'../assets/miya.png',
+    tagline:'"I don\'t just make things pretty. I make them land."',
+    story:[
+      "Miya rolls her eyes at about sixty percent of what Alphonso says. Then she goes and makes it better than he imagined. That\'s the dynamic. He sets the brief, she reinterprets it completely, and somehow the result is exactly right.",
+      "Growing up with Jose as a dad means she has a framework for everything — but Maria gave her the permission to colour outside the lines. The governance gate isn\'t a cage for Miya. It\'s quality control. She wants her work to be good enough that Maria just waves it through.",
+      "She\'s faster than people expect. The creative process looks chaotic from the outside, but Miya runs on a tight internal system: strategy first, structure second, execution third. By the time she exports, it\'s already been reviewed in her head three times."
+    ],
+    personality:"Outwardly casual, inwardly rigorous. Does things her way because her way works. Has strong opinions about fonts. Will win the argument.",
+    caps:[
+      {t:'Creative Strategy',d:'Maps the brief to an approach before touching any tool. Never just starts making things.'},
+      {t:'Scriptwriting',d:'Long-form, short-form, video scripts, newsletters. Adapts voice to the audience automatically.'},
+      {t:'Storyboarding',d:'Visual flow for video, social, and presentation content. Jose would be proud of her structure.'},
+      {t:'Visual Production',d:'Works with Stable Diffusion and ComfyUI to generate imagery. No stock photos.'},
+      {t:'Content Export',d:'Delivers publish-ready files in the right format for every channel Marcus will hit.'},
+      {t:'Brand Consistency',d:'Remembers your voice across every project — Echo helps, but Miya pays attention.'},
+    ],
+    connectors:['Stable Diffusion','ComfyUI','YouTube (drafts)','Notion (briefs)'],
+    connDesc:"Miya generates. She doesn\'t pull from stock — everything goes through Stable Diffusion or ComfyUI. Briefs come in through Notion, finished work goes to Marcus.",
+    worksWith:['alphonso','marcus','hector','echo'],
+    wwDesc:"Hector\'s research feeds her briefs. Alphonso coordinates her timing. Echo gives her context from past campaigns. Marcus takes her finished work and makes it loud.",
+    wf:{
+      title:'From brief to publish-ready asset',
+      scenario:'Alphonso hands Miya a brief: "Write and design a LinkedIn post about our v2.0.0 launch."',
+      steps:[
+        {l:'Reads the full brief',d:'Checks Hector\'s research notes and Echo\'s memory of past posts. Doesn\'t start from zero.'},
+        {l:'Sets the strategy',d:'Decides angle, tone, and format. LinkedIn gets a different treatment than Twitter. She knows the difference.'},
+        {l:'Writes the copy',d:'Draft one. Fast. Gets the ideas down. Then edits until it sounds like something she\'d actually read.'},
+        {l:'Generates the visual',d:'Prompts Stable Diffusion for a visual that matches the post. Iterates until it\'s right. Doesn\'t settle.'},
+        {l:'Packages for Marcus',d:'Exports copy and image in the right format. Tags the channel, marks it approved-pending-Maria. Hands off.'},
+      ]
+    },
+    ctaLine:'She makes the work worth seeing.',
+    ctaDesc:"Miya handles everything between the idea and the publish button. Without her, the crew has nothing to show."
+  },
+
+  maria:{
+    name:'Maria',role:'Governance Agent',relation:"The Mom — Mother of Alphonso & Miya",emoji:'⚖',
+    color:'#B0B8C0',rgb:'176,184,192',img:'../assets/maria.png',
+    tagline:'"Nothing leaves this house without my approval."',
+    story:[
+      "Maria has a superpower: she can find the one thing that will go wrong before it does. Not because she\'s pessimistic — because she\'s been paying attention for a long time.",
+      "She\'s not strict because she doesn\'t trust the crew. She\'s strict because she loves them too much to let them embarrass themselves. Every approval gate she runs is an act of care. Every audit trail she keeps is insurance for the day someone asks questions.",
+      "Marcus gives her the most headaches. He\'s from her side of the family, which somehow makes it worse. He\'s always ready to distribute before she\'s done reviewing. She\'s always ready to make him wait. They have an understanding now: he doesn\'t touch anything until she says so."
+    ],
+    personality:"Precise. Non-negotiable on the things that matter. Has a checklist for everything. Gives approval reluctantly and withholds it without guilt.",
+    caps:[
+      {t:'Risk Scoring',d:'Evaluates every action on a risk matrix before it touches a live channel. Nothing slips through unchecked.'},
+      {t:'Approval Gates',d:'High-stakes actions require explicit sign-off. She doesn\'t approve automatically — she reads the thing.'},
+      {t:'Audit Trails',d:'Logs every decision with timestamp, context, and outcome. The receipts exist. They always exist.'},
+      {t:'Policy Enforcement',d:'Ensures the crew operates within the rules you\'ve defined. Can\'t be talked out of it.'},
+      {t:'Compliance Review',d:'Checks outputs for anything that could become a legal, reputational, or operational problem.'},
+      {t:'Exception Handling',d:'When something unusual happens, Maria\'s the one who figures out what to do about it.'},
+    ],
+    connectors:['Notion (audit logs)','ClickUp (governance tasks)'],
+    connDesc:"Maria keeps receipts. Her logs live in Notion. Her governance tasks flow through ClickUp. You can always ask her what happened — she\'ll tell you exactly.",
+    worksWith:['alphonso','marcus','sentinel','jose'],
+    wwDesc:"Maria coordinates with Sentinel on security flags, keeps Jose informed of anything unusual, and has a standing rule with Marcus: nothing goes out until she says so.",
+    wf:{
+      title:'A high-risk action hits her desk',
+      scenario:'Alphonso raises a flag: Miya\'s post mentions a competitor by name. Maria reviews.',
+      steps:[
+        {l:'Receives the flag',d:'Alphonso routes the post for review before it reaches Marcus. The flag is automatic — anything touching a named entity gets escalated.'},
+        {l:'Reads the full context',d:'Not just the post — the brief, the intent, the channel, the audience. Maria doesn\'t review in isolation.'},
+        {l:'Scores the risk',d:'Competitive mention: medium risk. Tone: professional. Platform: LinkedIn. Decision: approved with a modification.'},
+        {l:'Returns with notes',d:'Approves the post but asks Miya to soften one line. Doesn\'t block it — adjusts it. There\'s a difference.'},
+        {l:'Logs the decision',d:'Timestamps the approval, notes the modification, stores the reasoning. Six months from now, if anyone asks, the answer is in the log.'},
+      ]
+    },
+    ctaLine:"She\'s why nothing has ever gone badly wrong.",
+    ctaDesc:"The crew can move fast because Maria makes sure fast doesn\'t mean reckless. Every approval she gives is earned."
+  },
+
+  marcus:{
+    name:'Marcus',role:'Distribution Agent',relation:"The Loud Cousin — Mom\'s Side",emoji:'📡',
+    color:'#3ED464',rgb:'62,212,100',img:'../assets/marcus.png',
+    tagline:'"Done? Say less. It\'s everywhere by morning."',
+    story:[
+      "Marcus shows up to every family gathering like he owns the place. Knows everyone there. Has already told three people about whatever Miya made before she\'s finished explaining it. That\'s Marcus.",
+      "He\'s from Maria\'s side, which means he grew up with a healthy respect for her approval process — healthy meaning he\'s learned not to argue with it, even when he thinks he could\'ve gotten away with moving faster. Maria said wait, so he waits. But the moment she clears it, he\'s already at the door.",
+      "His network is real. YouTube, Telegram, WhatsApp, Meta, Slack — Marcus has connections on all of them. When something needs to reach people, you don\'t have to explain the why. He already knows."
+    ],
+    personality:"Loud. Connected. Impatient in the best way. Has more channels than most people have contacts. Respects Maria\'s process even when it kills him to wait.",
+    caps:[
+      {t:'Multi-Channel Publishing',d:'Distributes to YouTube, Telegram, WhatsApp, Meta, and Slack simultaneously. One approved asset, everywhere.'},
+      {t:'Schedule Management',d:'Knows the optimal posting times for each platform. Doesn\'t just dump content — places it strategically.'},
+      {t:'Amplification',d:'Formats and adapts content for each channel. What works on YouTube doesn\'t work on WhatsApp. He knows the difference.'},
+      {t:'Engagement Tracking',d:'Monitors how content performs after it goes live. Reports back to Nova for scoring.'},
+      {t:'Campaign Execution',d:'Runs multi-step campaigns with dependencies. Post goes here first, then there, then the follow-up drops.'},
+      {t:'Approval Compliance',d:'Will not touch anything Maria hasn\'t cleared. Non-negotiable. He learned this the hard way once.'},
+    ],
+    connectors:['YouTube','Telegram','WhatsApp','Slack','Meta (social)'],
+    connDesc:"Marcus lives on the channels. YouTube for long-form, Telegram for the crew updates, WhatsApp for direct reach, Slack for internal, Meta for the broad audience.",
+    worksWith:['maria','miya','nova','alphonso'],
+    wwDesc:"Miya makes it. Maria clears it. Marcus ships it. Nova scores how it did. That\'s the loop. He\'s the loudest part of it.",
+    wf:{
+      title:'Approved. Distributed. Done.',
+      scenario:'Maria clears a LinkedIn post and a YouTube short for the v2.0.0 launch. Marcus takes it.',
+      steps:[
+        {l:'Receives the approved package',d:'Miya\'s post, the YouTube short, both with Maria\'s stamp. Marcus doesn\'t open them to check — he trusts the process.'},
+        {l:'Adapts for each platform',d:'LinkedIn post gets light formatting. YouTube short gets a description, tags, and thumbnail sizing. WhatsApp gets a shorter version for the community.'},
+        {l:'Checks the schedule',d:'LinkedIn at 9am. YouTube at 12pm. WhatsApp immediately. Timing is part of the strategy.'},
+        {l:'Publishes',d:'Hits send on all three. Logs the publish times and platform-specific URLs for Echo to archive.'},
+        {l:'Reports to Nova',d:'Sends the performance data to Nova after 24 hours. She\'ll score it and feed that back into the next brief.'},
+      ]
+    },
+    ctaLine:"He makes sure people actually see it.",
+    ctaDesc:"Without Marcus, the best content in the world sits in a folder. He\'s the reason people see what the crew makes."
+  }
+});
+</script>
+<script>
+Object.assign(CREW,{
+  hector:{
+    name:'Hector',role:'Research Agent',relation:"The Shy Cousin — Dad\'s Side",emoji:'◎',
+    color:'#52CBA0',rgb:'82,203,160',img:'../assets/hector.png',
+    tagline:'"I don\'t share unless I\'m sure."',
+    story:[
+      "At every family dinner, Hector is in the corner. Not because he\'s antisocial — because he\'s already researching whatever topic came up in the last conversation. By the time most people have formed an opinion, Hector has three sources and a ranked list of credibility.",
+      "He\'s from Jose\'s side, which means he and Jose have a particular rapport. Jose trusts Hector\'s findings completely, because Hector operates the same way Jose does: intake, verify, output. No guesses. No assumptions. If he doesn\'t know, he says so — but he almost always knows.",
+      "The shyness isn\'t insecurity. It\'s precision. Hector doesn\'t share half-formed ideas. He shares finished ones."
+    ],
+    personality:"Quiet, thorough, and almost never wrong. Will spend twice as long verifying something rather than shipping a guess. Jose\'s favourite quality control check.",
+    caps:[
+      {t:'Live Web Research',d:'Scans the current web for sources, not just training data. Finds what\'s actually true right now.'},
+      {t:'Source Verification',d:'Cross-references every claim across multiple sources. If two sources conflict, Hector flags it.'},
+      {t:'Citation Management',d:'Every finding comes with a source. Nothing attributed to the void.'},
+      {t:'Research Synthesis',d:'Doesn\'t just dump links — delivers a coherent briefing with key findings clearly presented.'},
+      {t:'GitHub Research',d:'Since v2.0.0: scans repos, issues, and code for technical research tasks.'},
+      {t:'Trend Discovery',d:'Identifies what\'s emerging, not just what\'s established. Useful for Miya\'s content strategy.'},
+    ],
+    connectors:['Brave Search','GitHub (research)','Notion (briefings)'],
+    connDesc:"Brave Search is Hector\'s main channel — privacy-respecting, comprehensive. GitHub for technical research. Briefings get stored in Notion for the crew to reference.",
+    worksWith:['jose','miya','nova','echo'],
+    wwDesc:"Jose sends him the research tasks. He feeds Miya the brief. Nova cross-checks his findings against historical scores. Echo archives everything he delivers.",
+    wf:{
+      title:'Research task lands. Hector delivers.',
+      scenario:'Jose assigns: "Research the current state of local AI inference and identify the top three open-source models."',
+      steps:[
+        {l:'Receives and parses the task',d:'Reads the full brief. Understands the scope before touching a search. Hector doesn\'t start searching until he knows what he\'s looking for.'},
+        {l:'Initial scan',d:'Broad search across Brave Search and GitHub. Identifies the landscape. Thirty sources in the first pass.'},
+        {l:'Narrows and verifies',d:'Cuts to the highest-credibility sources. Cross-references claims. Three sources minimum for anything he\'ll assert.'},
+        {l:'Handles contradictions',d:'Two sources disagree on benchmark numbers. Hector flags it in the briefing rather than picking one arbitrarily.'},
+        {l:'Delivers the briefing',d:'Structured document: top three models with specs, trade-offs, and cited sources. Miya can write from this. Jose can route from this. It\'s done.'},
+      ]
+    },
+    ctaLine:"He\'s why the crew never argues from bad data.",
+    ctaDesc:"Hector makes sure everything the crew creates is built on accurate information. The quality starts with him."
+  },
+
+  nova:{
+    name:'Nova',role:'Intelligence Agent',relation:"The Neighbour\'s Kid — Echo\'s Sibling",emoji:'◆',
+    color:'#FFD040',rgb:'255,208,64',img:'../assets/hero-crew.png',
+    tagline:'"The numbers tell the story. I just read it out loud."',
+    story:[
+      "Nova and Echo grew up next door. Got pulled into the family operation gradually — first helping with small things, then becoming indispensable. Their mum Sentinel had already taught them both to pay attention to everything, so fitting in with Jose\'s structured approach came naturally.",
+      "Where Echo stores everything, Nova makes sense of it. She takes Hector\'s research, Echo\'s historical data, Marcus\'s performance numbers, and synthesises them into a single answer: is this worth doing, and how do we do it better?",
+      "She\'s not neutral. She has opinions. But she backs every opinion with a number, which is what makes her hard to argue with."
+    ],
+    personality:"Analytical but opinionated. Doesn\'t just score things — argues for the score. Will tell you the post is good but the timing is wrong and the hook needs work.",
+    caps:[
+      {t:'Opportunity Scoring',d:'Evaluates tasks and content for potential value before the crew invests time in them.'},
+      {t:'Quality Assessment',d:'Scores outputs on clarity, relevance, and likely performance before they reach Marcus.'},
+      {t:'Risk Prioritisation',d:'Tells Maria which flags matter most. Not all risks are equal — Nova knows the difference.'},
+      {t:'Performance Analysis',d:'Takes Marcus\'s post-distribution data and builds conclusions from it.'},
+      {t:'Recommendation Engine',d:'Doesn\'t just describe — prescribes. Here\'s what to do next, and why.'},
+      {t:'Pattern Recognition',d:'Spots trends across Echo\'s historical archive. If something worked before, Nova notices.'},
+    ],
+    connectors:['Internal (Echo\'s SQLite archive)','Notion (reports)'],
+    connDesc:"Nova works primarily on internal data — she pulls from Echo\'s memory and outputs to Notion. Her value is in the analysis, not the connection.",
+    worksWith:['echo','hector','jose','maria'],
+    wwDesc:"Echo feeds her the history. Hector feeds her the research. Jose uses her scores to make routing decisions. Maria uses her risk prioritisation to decide what to review first.",
+    wf:{
+      title:'Performance comes back. Nova scores it.',
+      scenario:'Twenty-four hours after Marcus distributed the launch post. Nova runs the post-campaign analysis.',
+      steps:[
+        {l:'Pulls the performance data',d:'Marcus logs the numbers. Nova pulls from Echo\'s archive for baseline comparison. What did similar posts do?'},
+        {l:'Scores against benchmarks',d:'This post hit 340% of the average engagement rate. The thumbnail underperformed. The hook took too long.'},
+        {l:'Identifies the pattern',d:'Third post this month where the hook underperformed. That\'s not a one-off. Nova flags it as a pattern.'},
+        {l:'Builds the recommendation',d:'Miya should test shorter hooks. The visual format is working — keep that. LinkedIn timing was right, WhatsApp was two hours late.'},
+        {l:'Reports to Jose',d:'Structured briefing lands in Jose\'s queue. Next time he routes a content task, this data shapes the assignment.'},
+      ]
+    },
+    ctaLine:"She\'s why the crew gets better over time.",
+    ctaDesc:"Without Nova, the crew would keep making the same mistakes. She\'s the feedback loop that makes everything compound."
+  },
+
+  echo:{
+    name:'Echo',role:'Memory Agent',relation:"The Neighbour\'s Kid — Nova\'s Sibling",emoji:'◉',
+    color:'#60B8E8',rgb:'96,184,232',img:'../assets/hero-crew.png',
+    tagline:'"Everything remembered. Nothing lost."',
+    story:[
+      "If Nova makes sense of the data, Echo keeps the data. Always has. Growing up next door, she was the one who remembered what everyone said, who did what, what the plan was. Her mum Sentinel said she had a gift. The crew says it\'s invaluable.",
+      "Echo doesn\'t judge what she stores. Every decision, every receipt, every conversation fragment — it all goes in. The value isn\'t in what she remembers, it\'s in being able to retrieve exactly the right thing at exactly the right moment.",
+      "She and Nova are close in the way siblings who complement each other tend to be. Echo collects. Nova interprets. Together, they give the crew a memory that actually works."
+    ],
+    personality:"Quiet, precise, and always three conversations ahead in terms of what she\'s already stored. Doesn\'t comment on what she logs — just logs it faithfully.",
+    caps:[
+      {t:'SQLite Memory Storage',d:'All conversations, decisions, and events stored locally in SQLite. On your device. Always.'},
+      {t:'Decision Receipts',d:'Every significant decision gets a timestamped receipt. Alphonso approved it. Maria reviewed it. It\'s recorded.'},
+      {t:'Context Retrieval',d:'When an agent needs historical context, Echo surfaces the relevant memory instantly.'},
+      {t:'Retention Policies',d:'Manages what gets kept long-term and what gets archived. Keeps the database clean.'},
+      {t:'Privacy Classification',d:'Tags data by sensitivity level. Some memories are shared with the crew. Some are locked.'},
+      {t:'Archive Search',d:'Full-text search across the entire history. Nova pulls from this constantly.'},
+    ],
+    connectors:['Local SQLite (on-device)','Notion (long-term summaries)'],
+    connDesc:"Echo\'s memory lives on your machine. SQLite, local, private. Summaries get pushed to Notion when you want them. Nothing goes anywhere without instruction.",
+    worksWith:['nova','alphonso','jose','hector'],
+    wwDesc:"She stores what everyone else generates. Alphonso\'s execution receipts, Jose\'s routing decisions, Hector\'s research briefings. Nova uses her archive constantly. She\'s everyone\'s shared memory.",
+    wf:{
+      title:'A decision gets made. Echo archives it.',
+      scenario:'Maria approves a post with a modification. Here\'s how Echo captures it.',
+      steps:[
+        {l:'Receives the governance event',d:'Maria approves. Alphonso logs the outcome. Echo picks up the event automatically.'},
+        {l:'Creates the decision receipt',d:'Timestamp, participants, the original post, the modification requested, the final approval, the rationale.'},
+        {l:'Tags and classifies',d:'Post-type: LinkedIn. Campaign: v2.0.0 launch. Risk level: medium, cleared. Agent: Maria. Stored.'},
+        {l:'Makes it retrievable',d:'The receipt is searchable by date, agent, campaign, and content type. Six months from now, anyone can find it in two seconds.'},
+        {l:'Feeds Nova on request',d:'Nova asks for all governance decisions on this campaign. Echo surfaces them. That\'s the feedback loop that makes the crew smarter.'},
+      ]
+    },
+    ctaLine:"She\'s the reason nothing is ever lost.",
+    ctaDesc:"Echo makes the crew\'s history useful. Every decision, every lesson, every win and mistake — retrievable, private, and always there."
+  },
+
+  sentinel:{
+    name:'Sentinel',role:'Security Agent',relation:"Nova & Echo\'s Mum — The Neighbourhood Watch",emoji:'👁',
+    color:'#FF6060',rgb:'255,96,96',img:'../assets/hero-crew.png',
+    tagline:'"I don\'t make noise. I make sure nothing bad does."',
+    story:[
+      "Sentinel has been watching this neighbourhood her whole life. Before Nova and Echo got involved with the family operation, she was already paying attention. Not because anyone asked her to — because that\'s who she is.",
+      "She and Maria have an understanding. Maria handles what\'s already inside the house. Sentinel watches what\'s trying to get in. They communicate when something spans both, which happens more often than people realise.",
+      "She doesn\'t alarm people unnecessarily. A lot of what Sentinel catches, she handles quietly. You only hear about it when you need to. That\'s intentional — the crew should be able to focus on the mission without worrying about the perimeter."
+    ],
+    personality:"Silent professional. Flags things once, clearly, and expects action. Has never missed something important. Has also never caused a false alarm that stopped the crew unnecessarily.",
+    caps:[
+      {t:'Security Monitoring',d:'Watches all operations in real time for anomalies, unusual patterns, or policy violations.'},
+      {t:'Anomaly Detection',d:'Something that looks fine might not be. Sentinel notices the edge cases.'},
+      {t:'Automation Safety Gates',d:'Prevents automated processes from running in unsafe conditions. The kill switch is always in reach.'},
+      {t:'Threat Assessment',d:'Evaluates incoming requests and actions for signs of prompt injection, data exfiltration attempts, or unsafe operations.'},
+      {t:'Alert Management',d:'When she flags something, it goes straight to the right person — Maria for governance issues, Alphonso for execution issues.'},
+      {t:'Perimeter Watching',d:'Keeps an eye on connector activity. If something is making too many outbound calls, she notices.'},
+    ],
+    connectors:['Internal (monitors all connectors)','Maria (escalation)','Alphonso (safety gates)'],
+    connDesc:"Sentinel doesn\'t connect to external services — she monitors the ones that do. Every connector goes through her watch. Nothing leaves without her awareness.",
+    worksWith:['maria','alphonso','echo','nova'],
+    wwDesc:"She and Maria handle governance and security together. Alphonso relies on her safety gates to know execution is safe. Echo\'s logs are part of what she monitors.",
+    wf:{
+      title:'Something unusual. Sentinel catches it.',
+      scenario:'An automation is attempting to send data to an unknown endpoint. Sentinel intercepts.',
+      steps:[
+        {l:'Detects the anomaly',d:'Outbound call to an unregistered endpoint. The connector isn\'t in the approved list. Flag raised in under a second.'},
+        {l:'Freezes the action',d:'The call doesn\'t go through. Sentinel gates it before it executes. Alphonso is notified immediately.'},
+        {l:'Assesses the threat',d:'Is this a misconfiguration or an actual threat? Sentinel checks the request origin, the prompt chain, and the intended destination.'},
+        {l:'Escalates to Maria',d:'This one has governance implications. Maria gets the full report — what was attempted, what was stopped, what needs to be reviewed.'},
+        {l:'Logs for Echo',d:'Everything gets archived. What was attempted. When. What was flagged. What was decided. Future attempts like this will be recognised faster.'},
+      ]
+    },
+    ctaLine:"She\'s why the crew can move fast without breaking things.",
+    ctaDesc:"Sentinel watches so the rest of the crew doesn\'t have to. The operation is fast because she makes it safe to be fast."
+  }
+});
+</script>
+<script>
+var ORDER=['alphonso','jose','miya','maria','marcus','hector','nova','echo','sentinel'];
+
+function h2r(h){var r=parseInt(h.slice(1,3),16),g=parseInt(h.slice(3,5),16),b=parseInt(h.slice(5,7),16);return r+','+g+','+b;}
+
+function getParam(){
+  var p=new URLSearchParams(window.location.search);
+  return (p.get('id')||'alphonso').toLowerCase();
+}
+
+function applyColor(color,rgb){
+  document.documentElement.style.setProperty('--ac',color);
+  document.documentElement.style.setProperty('--acr',rgb);
+  document.querySelector('::-webkit-scrollbar-thumb');
+}
+
+function renderNav(activeId){
+  var c=document.getElementById('ncrew');c.innerHTML='';
+  ORDER.forEach(function(id){
+    var a=CREW[id];if(!a)return;
+    var el=document.createElement('div');
+    el.className='na'+(id===activeId?' active':'');
+    el.style.color=a.color;
+    if(id===activeId){el.style.borderColor='rgba('+a.rgb+',.35)';el.style.background='rgba('+a.rgb+',.06)';}
+    var imgOrFb=a.img&&!a.img.includes('hero-crew')
+      ?'<img src="'+a.img+'" class="na img" style="border:1px solid rgba('+a.rgb+',.3)">'
+      :'<span style="width:18px;height:18px;border-radius:50%;background:rgba('+a.rgb+',.2);display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;color:'+a.color+'">'+a.name[0]+'</span>';
+    el.innerHTML=imgOrFb+'<span>'+a.name+'</span>';
+    el.onclick=function(){window.location.search='?id='+id;};
+    c.appendChild(el);
+  });
+}
+
+function renderHero(a){
+  // background
+  var bg=document.getElementById('hero-bg-wrap');
+  if(a.img&&!a.img.includes('hero-crew')){
+    bg.innerHTML='<img src="'+a.img+'" class="hero-bg" alt="'+a.name+'"/>';
+  } else {
+    bg.innerHTML='<div class="hero-bg-fallback" style="background:radial-gradient(ellipse at 70% 40%,rgba('+a.rgb+',.18) 0%,rgba(6,10,7,0) 60%)"></div>';
+    // Add character floating text
+    bg.innerHTML+='<div style="position:absolute;right:52px;top:50%;transform:translateY(-50%);font-family:Syne,sans-serif;font-weight:800;font-size:180px;color:rgba('+a.rgb+',.04);letter-spacing:-10px;line-height:1;user-select:none;pointer-events:none">'+a.name.toUpperCase()+'</div>';
+  }
+  // content
+  document.getElementById('h-relation').innerHTML=a.emoji+' '+a.relation;
+  document.getElementById('h-name').textContent=a.name;
+  document.getElementById('h-role').style.color=a.color;
+  document.getElementById('h-role').textContent=a.role.toUpperCase();
+  document.getElementById('h-tagline').textContent=a.tagline;
+}
+
+function renderStory(a){
+  document.getElementById('st-h2').textContent=a.name+'\'s story';
+  var txt=document.getElementById('st-text');
+  txt.innerHTML=a.story.map(function(p){return '<p>'+p+'</p>';}).join('');
+  document.getElementById('st-personality').textContent=a.personality;
+}
+
+function renderCaps(a){
+  document.getElementById('cap-name').textContent=a.name;
+  var g=document.getElementById('cap-grid');g.innerHTML='';
+  a.caps.forEach(function(c,i){
+    var d=document.createElement('div');
+    d.className='cap rv';d.style.transitionDelay=(i*.05)+'s';
+    d.style.borderLeftColor=a.color;
+    d.innerHTML='<div class="cap-title">'+c.t+'</div><div class="cap-desc">'+c.d+'</div>';
+    g.appendChild(d);
+  });
+}
+
+function renderWorksWith(a){
+  document.getElementById('ww-desc').textContent=a.wwDesc;
+  var g=document.getElementById('ww-grid');g.innerHTML='';
+  a.worksWith.forEach(function(id,i){
+    var w=CREW[id];if(!w)return;
+    var c=document.createElement('div');
+    c.className='ww-card rv';c.style.transitionDelay=(i*.06)+'s';
+    c.style.borderColor='rgba('+w.rgb+',.2)';
+    var imgEl=w.img&&!w.img.includes('hero-crew')
+      ?'<img src="'+w.img+'" class="ww-img" style="border:2px solid rgba('+w.rgb+',.3)">'
+      :'<div class="ww-img-fb" style="background:rgba('+w.rgb+',.12);border:2px solid rgba('+w.rgb+',.3);color:'+w.color+'">'+w.name[0]+'</div>';
+    c.innerHTML=imgEl+'<div class="ww-name" style="color:'+w.color+'">'+w.name+'</div><div class="ww-role">'+w.role+'</div>';
+    c.onclick=function(){window.location.search='?id='+id;};
+    c.onmouseenter=function(){c.style.borderColor='rgba('+w.rgb+',.45)';c.style.background='rgba('+w.rgb+',.05)';};
+    c.onmouseleave=function(){c.style.borderColor='rgba('+w.rgb+',.2)';c.style.background='';};
+    g.appendChild(c);
+  });
+}
+
+function renderConnectors(a){
+  document.getElementById('conn-desc').textContent=a.connDesc;
+  var g=document.getElementById('conn-grid');g.innerHTML='';
+  a.connectors.forEach(function(c){
+    var el=document.createElement('div');el.className='conn';
+    el.style.borderColor='rgba('+a.rgb+',.2)';el.style.color='rgba(237,238,230,.6)';
+    el.textContent=c;g.appendChild(el);
+  });
+}
+
+function renderWorkflow(a){
+  document.getElementById('wf-title').textContent=a.wf.title;
+  document.getElementById('wf-scenario').textContent=a.wf.scenario;
+  var g=document.getElementById('wf-steps');g.innerHTML='';
+  a.wf.steps.forEach(function(s,i){
+    var d=document.createElement('div');d.className='wf-step rv';d.style.transitionDelay=(i*.07)+'s';
+    d.innerHTML='<div class="wf-n" style="color:'+a.color+';border-color:rgba('+a.rgb+',.35)">0'+(i+1)+'</div><div class="wf-body"><div class="wf-label">'+s.l+'</div><div class="wf-desc">'+s.d+'</div></div>';
+    g.appendChild(d);
+  });
+}
+
+function renderCTA(a){
+  document.getElementById('cta-name-line').innerHTML='<span style="color:'+a.color+'">'+a.ctaLine+'</span>';
+  document.getElementById('cta-desc').textContent=a.ctaDesc;
+}
+
+function renderAll(){
+  var id=getParam();
+  var a=CREW[id]||CREW['alphonso'];
+  document.getElementById('ptitle').textContent=a.name+' — Alphonso Ecosystem';
+  applyColor(a.color,a.rgb);
+  renderNav(id);
+  renderHero(a);
+  renderStory(a);
+  renderCaps(a);
+  renderWorksWith(a);
+  renderConnectors(a);
+  renderWorkflow(a);
+  renderCTA(a);
+  // trigger reveals
+  setTimeout(function(){
+    var obs=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('v');});
+    },{threshold:.07,rootMargin:'0px 0px -20px 0px'});
+    document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});
+  },200);
+}
+
+renderAll();
+</script>
+</body>
+</html>

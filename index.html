@@ -253,7 +253,7 @@ footer{border-top:1px solid rgba(158,240,26,.07);padding:26px 52px;background:va
       <p class="hd" style="animation:fi .7s ease .5s both">A local-first AI operating environment. 9 specialized agents coordinate to research, create, execute, govern, and automate — while you stay in control.</p>
       <div class="hbs" style="animation:fu .6s cubic-bezier(.16,1,.3,1) .55s both">
         <a href="https://github.com/Thatisshayan/AlphonsoEcosystem/releases/tag/v2.0.0" target="_blank" rel="noopener" class="bl">↓ Download Alphonso</a>
-        <a href="https://github.com/Thatisshayan/AlphonsoEcosystem" target="_blank" rel="noopener" class="bg2">View on GitHub</a>
+        <a href="https://github.com/Thatisshayan/AlphonsoEcosystem/blob/main/docs/ALPHONSO_GROUND_TRUTH.md" target="_blank" rel="noopener" class="bg2">Read Ground Truth</a>
       </div>
       <div class="hs" style="animation:fi .6s ease .7s both">
         <a href="https://github.com/Thatisshayan/AlphonsoEcosystem" target="_blank" rel="noopener" class="ghp">⊙ Source on GitHub</a>
@@ -459,8 +459,9 @@ window.addEventListener('scroll',function(){document.getElementById('nav').class
 (function(){
   var g=document.getElementById('ag');
   AGENTS.forEach(function(a,i){
-    var c=document.createElement('div');c.className='ac rv';c.style.transitionDelay=(i*.05)+'s';
+    var c=document.createElement('div');c.className='ac rv';c.style.transitionDelay=(i*.05)+'s';c.style.cursor='pointer';
     c.innerHTML='<div class="ab" style="background:linear-gradient(90deg,'+a.color+',transparent)"></div><div class="ap" style="background:linear-gradient(160deg,rgba('+a.rgb+',.1),var(--bg2))"><img src="'+a.img+'" alt="'+a.name+'"/><div class="apf"></div><div class="atb" style="color:'+a.color+';background:rgba('+a.rgb+',.12);border:1px solid rgba('+a.rgb+',.3)">'+a.title+'</div></div><div class="abo"><div class="an" style="color:'+a.color+'">'+a.name.toUpperCase()+'</div><div class="ar" style="color:rgba('+a.rgb+',.5)">'+a.title+'</div><div class="aabs">'+a.abs.map(function(ab){return '<div class="aab"><span style="font-size:7px;color:'+a.color+'">▶</span>'+ab+'</div>';}).join('')+'</div><div class="ad">'+a.desc+'</div></div>';
+    c.addEventListener('click',function(){window.location.href='agents/?id='+a.id;});
     c.addEventListener('mouseenter',function(){c.style.background='rgba('+a.rgb+',.06)';c.style.borderColor='rgba('+a.rgb+',.38)';c.style.boxShadow='0 10px 36px rgba('+a.rgb+',.14)';c.querySelector('.ab').style.opacity='1';});
     c.addEventListener('mouseleave',function(){c.style.background='var(--bg2)';c.style.borderColor='transparent';c.style.boxShadow='none';c.querySelector('.ab').style.opacity='.3';});
     g.appendChild(c);
