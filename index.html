@@ -412,7 +412,7 @@ var AGENTS=[
   {id:'marcus',name:'Marcus',title:'DISTRIBUTION AGENT',color:'#3ED464',rgb:'62,212,100',img:'assets/marcus.png',abs:['Distribute','Amplify','Engage','Analyze'],desc:"Once Marcus runs it, it's live — YouTube, Telegram, WhatsApp, Meta."},
   {id:'maria',name:'Maria',title:'GOVERNANCE AGENT',color:'#B0B8C0',rgb:'176,184,192',img:'assets/maria.png',abs:['Govern','Verify','Audit','Ensure'],desc:'Nothing risky moves without Maria. Audit trails and approval gates at every step.'},
 ];
-var SUPP=[{n:'Hector',t:'Research Agent',c:'#52CBA0'},{n:'Echo',t:'Memory Agent',c:'#60B8E8'},{n:'Sentinel',t:'Security Agent',c:'#FF6060'},{n:'Nova',t:'Intelligence Agent',c:'#FFD040'}];
+var SUPP=[{id:'hector',n:'Hector',t:'Research Agent',c:'#52CBA0',rgb:'82,203,160',img:'assets/hector.png'},{id:'echo',n:'Echo',t:'Memory Agent',c:'#60B8E8',rgb:'96,184,232',img:'assets/echo.svg'},{id:'sentinel',n:'Sentinel',t:'Security Agent',c:'#FF6060',rgb:'255,96,96',img:'assets/sentinel.svg'},{id:'nova',n:'Nova',t:'Intelligence Agent',c:'#FFD040',rgb:'255,208,64',img:'assets/nova.svg'}];
 var PILLARS=[{icon:'🖥',t:'Local-First',d:'Your data never leaves your machine.'},{icon:'🔒',t:'Privacy by Design',d:'Built for privacy, security, and transparency.'},{icon:'✓',t:'Approval-Gated',d:'You approve what matters. Agents execute.'},{icon:'👤',t:'Supervised',d:'Human-in-the-loop. Always.'},{icon:'⚡',t:'Extensible',d:'Modular by design. Community driven.'}];
 var USES=[
   {icon:'🎬',who:'Content Creators',what:'Miya writes your scripts and storyboards. Hector researches trends. Marcus distributes to every platform simultaneously. You stay on camera.',agents:['Miya','Marcus','Hector'],colors:['#B060FF','#3ED464','#52CBA0'],img:'assets/miya.png'},
@@ -467,7 +467,12 @@ window.addEventListener('scroll',function(){document.getElementById('nav').class
     g.appendChild(c);
   });
   var sr=document.getElementById('sr');
-  SUPP.forEach(function(s){var ch=document.createElement('div');ch.className='sc3';ch.innerHTML='<span class="sdot" style="background:'+s.c+';box-shadow:0 0 5px '+s.c+'"></span><div><div style="font-family:Syne,sans-serif;font-weight:700;font-size:11px;color:'+s.c+'">'+s.n+'</div><div style="font-size:9px;color:var(--dim)">'+s.t+'</div></div>';sr.appendChild(ch);});
+  SUPP.forEach(function(s){var ch=document.createElement('div');ch.className='sc3';ch.style.cursor='pointer';
+    var imgOrDot=s.img?'<img src="'+s.img+'" style="width:24px;height:24px;border-radius:50%;border:1px solid rgba('+s.rgb+',.35);object-fit:cover;object-position:center;flex-shrink:0">':'<span class="sdot" style="background:'+s.c+';box-shadow:0 0 5px '+s.c+'"></span>';
+    ch.innerHTML=imgOrDot+'<div><div style="font-family:Syne,sans-serif;font-weight:700;font-size:11px;color:'+s.c+'">'+s.n+'</div><div style="font-size:9px;color:var(--dim)">'+s.t+'</div></div>';
+    ch.onclick=function(){window.location.href='agents/?id='+s.id;};
+    sr.appendChild(ch);
+  });
 })();
 
 /* SHOT STATS */

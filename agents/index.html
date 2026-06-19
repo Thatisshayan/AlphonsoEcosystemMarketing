@@ -421,7 +421,7 @@ Object.assign(CREW,{
 
   nova:{
     name:'Nova',role:'Intelligence Agent',relation:"The Neighbour\'s Kid — Echo\'s Sibling",emoji:'◆',
-    color:'#FFD040',rgb:'255,208,64',img:'../assets/hero-crew.png',
+    color:'#FFD040',rgb:'255,208,64',img:'../assets/nova.svg',
     tagline:'"The numbers tell the story. I just read it out loud."',
     story:[
       "Nova and Echo grew up next door. Got pulled into the family operation gradually — first helping with small things, then becoming indispensable. Their mum Sentinel had already taught them both to pay attention to everything, so fitting in with Jose\'s structured approach came naturally.",
@@ -458,7 +458,7 @@ Object.assign(CREW,{
 
   echo:{
     name:'Echo',role:'Memory Agent',relation:"The Neighbour\'s Kid — Nova\'s Sibling",emoji:'◉',
-    color:'#60B8E8',rgb:'96,184,232',img:'../assets/hero-crew.png',
+    color:'#60B8E8',rgb:'96,184,232',img:'../assets/echo.svg',
     tagline:'"Everything remembered. Nothing lost."',
     story:[
       "If Nova makes sense of the data, Echo keeps the data. Always has. Growing up next door, she was the one who remembered what everyone said, who did what, what the plan was. Her mum Sentinel said she had a gift. The crew says it\'s invaluable.",
@@ -495,7 +495,7 @@ Object.assign(CREW,{
 
   sentinel:{
     name:'Sentinel',role:'Security Agent',relation:"Nova & Echo\'s Mum — The Neighbourhood Watch",emoji:'👁',
-    color:'#FF6060',rgb:'255,96,96',img:'../assets/hero-crew.png',
+    color:'#FF6060',rgb:'255,96,96',img:'../assets/sentinel.svg',
     tagline:'"I don\'t make noise. I make sure nothing bad does."',
     story:[
       "Sentinel has been watching this neighbourhood her whole life. Before Nova and Echo got involved with the family operation, she was already paying attention. Not because anyone asked her to — because that\'s who she is.",
@@ -567,7 +567,7 @@ function renderNav(activeId){
 function renderHero(a){
   // background
   var bg=document.getElementById('hero-bg-wrap');
-  if(a.img&&!a.img.includes('hero-crew')){
+  if(a.img&&(a.img.endsWith('.png')||a.img.endsWith('.webp')||a.img.endsWith('.svg'))){
     bg.innerHTML='<img src="'+a.img+'" class="hero-bg" alt="'+a.name+'"/>';
   } else {
     bg.innerHTML='<div class="hero-bg-fallback" style="background:radial-gradient(ellipse at 70% 40%,rgba('+a.rgb+',.18) 0%,rgba(6,10,7,0) 60%)"></div>';
@@ -583,10 +583,21 @@ function renderHero(a){
 }
 
 function renderStory(a){
-  document.getElementById('st-h2').textContent=a.name+'\'s story';
-  var txt=document.getElementById('st-text');
-  txt.innerHTML=a.story.map(function(p){return '<p>'+p+'</p>';}).join('');
-  document.getElementById('st-personality').textContent=a.personality;
+  var rich = RICH[a.id] || {};
+  document.getElementById('st-h2').textContent = a.name + '\'s story';
+  var txt = document.getElementById('st-text');
+  var stories = (rich.story || a.story).map(function(p){return '<p>'+p+'</p>';}).join('');
+  // Add opening hook
+  var opening = rich.opening ? '<p style="font-size:15px;color:rgba(237,238,230,.75);font-style:italic;margin-bottom:18px;padding-left:0;border:none;">'+rich.opening+'</p>' : '';
+  txt.innerHTML = opening + stories;
+  // Add quote if exists
+  if (rich.quote) {
+    txt.innerHTML += '<div style="margin-top:22px;padding:16px 18px;background:rgba(var(--acr),.04);border-left:2px solid var(--ac);border-radius:0 6px 6px 0"><div style="font-style:italic;font-size:13px;color:rgba(237,238,230,.7);margin-bottom:6px;line-height:1.65\">\"'+rich.quote.text+'\"</div><div style="font-family:Syne,sans-serif;font-size:9px;font-weight:700;letter-spacing:1px;color:var(--ac)\">— '+rich.quote.from+'</div></div>';
+  }
+  // Personality + tell
+  var personalityText = a.personality;
+  if (rich.tell) personalityText += '\n\n' + '\u2192 Tell: ' + rich.tell;
+  document.getElementById('st-personality').innerHTML = '<div style="margin-bottom:12px\">'+a.personality+'</div>' + (rich.tell ? '<div style="margin-top:14px;padding-top:14px;border-top:1px solid rgba(var(--acr),.12)\"><div style="font-family:Syne,sans-serif;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--ac);margin-bottom:6px\">The Tell</div><div style=\"font-size:12px;color:rgba(237,238,230,.6)\">'+rich.tell+'</div></div>' : '');
 }
 
 function renderCaps(a){
@@ -609,7 +620,7 @@ function renderWorksWith(a){
     var c=document.createElement('div');
     c.className='ww-card rv';c.style.transitionDelay=(i*.06)+'s';
     c.style.borderColor='rgba('+w.rgb+',.2)';
-    var imgEl=w.img&&!w.img.includes('hero-crew')
+    var imgEl=w.img&&(w.img.endsWith('.png')||w.img.endsWith('.webp')||w.img.endsWith('.svg'))
       ?'<img src="'+w.img+'" class="ww-img" style="border:2px solid rgba('+w.rgb+',.3)">'
       :'<div class="ww-img-fb" style="background:rgba('+w.rgb+',.12);border:2px solid rgba('+w.rgb+',.3);color:'+w.color+'">'+w.name[0]+'</div>';
     c.innerHTML=imgEl+'<div class="ww-name" style="color:'+w.color+'">'+w.name+'</div><div class="ww-role">'+w.role+'</div>';
