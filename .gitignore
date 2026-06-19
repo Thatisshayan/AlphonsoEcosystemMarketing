@@ -1,0 +1,25 @@
+# VS / Visual Studio
+.vs/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Scripts (utility only, not needed in repo)
+patch.js
+patch-stories.js
+patch-svgs.js
+gen-mascots.js
+fetch-kilo-assets.ps1
+enable-pages.ps1
+setup-assets.ps1
+push.ps1
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Env
+.env
+*.env.local
