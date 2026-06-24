@@ -69,7 +69,7 @@ nav.sc{background:var(--glass-bg);backdrop-filter:blur(24px);-webkit-backdrop-fi
 .hm{display:none;background:none;border:none;color:var(--cream);font-size:24px;cursor:pointer;padding:4px;line-height:1}
 .do{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:300;opacity:0;pointer-events:none;transition:opacity .3s}
 .do.open{opacity:1;pointer-events:auto}
-.dr{position:fixed;top:0;right:-300px;width:280px;height:100vh;background:var(--surface-2);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);z-index:301;transition:right .4s cubic-bezier(.16,1,.3,1);padding:48px 24px;border-left:1px solid var(--border);overflow-y:auto}
+.dr{position:fixed;top:0;right:-300px;width:min(280px,85vw);height:100vh;background:var(--surface-2);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);z-index:301;transition:right .4s cubic-bezier(.16,1,.3,1);padding:48px 24px;border-left:1px solid var(--border);overflow-y:auto;touch-action:none}
 .dr.open{right:0}
 .dc{position:absolute;top:16px;right:16px;background:none;border:none;color:var(--cream);font-size:20px;cursor:pointer;padding:8px}
 .dr-links{display:flex;flex-direction:column;gap:16px}
@@ -416,29 +416,6 @@ footer{border-top:1px solid rgba(158,240,26,.07);padding:26px 52px;background:va
     </div>
   </div>
 </section>
-<!-- PRIVACY -->
-<section id="privacy">
-  <div class="privg">
-    <div class="privglow"></div>
-    <div class="rl">
-      <div class="lt">Local-First</div>
-      <h2 class="priv-h2">Your AI. Your Machine.<br>Your Rules.</h2>
-      <p style="color:var(--mut);font-size:12px;line-height:1.8;margin-bottom:20px">Alphonso runs on your desktop. No cloud lock-in. No data leakage. Approval-gated execution with full visibility into every action.</p>
-      <div>
-        <div class="pck"><span class="pckm">✓</span><span class="pckt">Ollama local inference — no external API for core LLM</span></div>
-        <div class="pck"><span class="pckm">✓</span><span class="pckt">SQLite memory stored entirely on your device</span></div>
-        <div class="pck"><span class="pckm">✓</span><span class="pckt">Fail-closed policy gate on every outbound connector</span></div>
-        <div class="pck"><span class="pckm">✓</span><span class="pckt">Approval required before any data leaves your machine</span></div>
-      </div>
-    </div>
-    <div class="rr">
-      <div class="term">
-        <div class="tbar"><div class="tdots"><div class="tdot" style="background:#FF5F57"></div><div class="tdot" style="background:#FEBC2E"></div><div class="tdot" style="background:#28C840"></div></div><div class="ttitle">alphonso — local env</div><div></div></div>
-        <div class="tbody" id="tb"><span class="tcur">▋</span></div>
-      </div>
-    </div>
-  </div>
-</section>
 <!-- PRICING -->
 <section id="pricing">
   <div style="margin-bottom:0" class="rv">
@@ -490,9 +467,66 @@ footer{border-top:1px solid rgba(158,240,26,.07);padding:26px 52px;background:va
       <a href="https://github.com/Thatisshayan/AlphonsoEcosystem/blob/main/ARCHITECTURE.md" target="_blank" rel="noopener" class="flink">Architecture</a>
     </div>
   </div>
+  <!-- CHANGELOG -->
+  <details class="changelog" style="max-width:800px;margin:0 auto;padding:24px 52px">
+    <summary class="cl-summary" style="cursor:pointer;list-style:none;display:flex;align-items:center;gap:12px;padding:16px;background:var(--surface-2);border:1px solid var(--border);border-radius:8px;font-family:Syne,sans-serif;font-weight:700;color:var(--cream)">
+      <span style="font-size:18px">📋</span>
+      <span>Changelog</span>
+      <span style="margin-left:auto;font-size:12px;color:var(--mut)">Click to expand</span>
+    </summary>
+    <div class="cl-content" style="margin-top:16px;padding:16px;background:var(--surface-1);border:1px solid var(--border);border-radius:8px;max-height:400px;overflow-y:auto">
+      <div class="cl-version" style="margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--border)">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+          <span style="font-family:Syne,sans-serif;font-weight:800;color:var(--lime);font-size:16px">v2.0.8</span>
+          <span style="color:var(--mut);font-size:12px">June 22, 2026</span>
+          <span style="margin-left:auto;background:var(--lime);color:#000;padding:2px 8px;border-radius:4px;font-size:10px;font-family:Syne,sans-serif;font-weight:700">Latest</span>
+        </div>
+        <ul style="color:var(--mut);font-size:13px;line-height:1.8;padding-left:20px">
+          <li><strong>Resilience Layer:</strong> Circuit breaker, rate limiter, memory monitor — connectors self-heal with backoff and storage alerts</li>
+          <li><strong>Agent Intelligence:</strong> Nova threshold alerts, Echo close-session synthesis, Jose escalation + parallel dispatch, Marcus scheduled publishing</li>
+          <li><strong>New UI Panels:</strong> SessionHistoryView, OrchestratorQueueView, DeadLetterQueueView, SentinelAllowlistPanel, AgentPairingView</li>
+          <li><strong>ChatView:</strong> Empty states, connector status dots, direct-agent mode, pin messages, degradation banner</li>
+          <li><strong>TypeScript Migration:</strong> App, Sidebar, RightPanel, SettingsView, ChatView all migrated to .tsx (10 total TSX components)</li>
+          <li><strong>Test Coverage:</strong> 120 test files / 1,737+ tests (~38%+ coverage)</li>
+          <li><strong>Platform:</strong> Husky pre-commit hook, bundle size CI guard, root docker-compose, vitest ts/tsx include, ESLint no-console</li>
+        </ul>
+      </div>
+      <div class="cl-version" style="margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--border)">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+          <span style="font-family:Syne,sans-serif;font-weight:800;color:var(--lime);font-size:16px">v2.0.6</span>
+          <span style="color:var(--mut);font-size:12px">June 22, 2026</span>
+        </div>
+        <ul style="color:var(--mut);font-size:13px;line-height:1.8;padding-left:20px">
+          <li>CI rustfmt fix, documentation accuracy pass</li>
+          <li>Mobile companion sprint plan executed (Phase 1–2 complete)</li>
+        </ul>
+      </div>
+      <div class="cl-version" style="margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--border)">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+          <span style="font-family:Syne,sans-serif;font-weight:800;color:var(--lime);font-size:16px">v2.0.5</span>
+          <span style="color:var(--mut);font-size:12px">June 21, 2026</span>
+        </div>
+        <ul style="color:var(--mut);font-size:13px;line-height:1.8;padding-left:20px">
+          <li>All 9 agent runtimes, Sprint Next-10 complete</li>
+          <li>112 test files, 1,621+ tests, coverage ~35%+</li>
+          <li>TypeScript migration (5 components), SQLite dual-write</li>
+        </ul>
+      </div>
+      <div class="cl-version">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+          <span style="font-family:Syne,sans-serif;font-weight:800;color:var(--lime);font-size:16px">v2.0.2</span>
+          <span style="color:var(--mut);font-size:12px">June 21, 2026</span>
+        </div>
+        <ul style="color:var(--mut);font-size:13px;line-height:1.8;padding-left:20px">
+          <li>WhatsApp Cloud end-to-end, auto-updater operational</li>
+          <li>1,100 tests</li>
+        </ul>
+      </div>
+    </div>
+  </details>
   <div class="fb">
-    <div class="fcopy">BSL 1.1 License · 2026 · 9 agents · 13 connectors · 1,015 tests · v2.0.2</div>
-    <div class="flive"><span class="fld"></span><span class="flt">v2.0.2 LIVE</span></div>
+    <div class="fcopy">BSL 1.1 License · 2026 · 9 agents · 13 connectors · 1,015 tests · v2.0.8</div>
+    <div class="flive"><span class="fld"></span><span class="flt">v2.0.8 LIVE</span></div>
   </div>
 </footer>
 <script>
