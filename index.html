@@ -64,6 +64,16 @@ nav.sc{background:var(--glass-bg);backdrop-filter:blur(24px);-webkit-backdrop-fi
 .bl:hover{background:var(--lhi);transform:translateY(-2px);box-shadow:0 4px 36px rgba(158,240,26,.45)}
 .bg2{display:inline-flex;align-items:center;gap:6px;background:transparent;color:var(--cream);font-family:'Syne',sans-serif;font-weight:600;font-size:13px;padding:9px 20px;border-radius:7px;border:1px solid rgba(255,255,255,.11);transition:all .2s}
 .bg2:hover{border-color:rgba(255,255,255,.24);background:rgba(255,255,255,.03)}
+.bl-ghost{display:inline-flex;align-items:center;gap:6px;background:transparent;color:var(--cream);font-family:'Syne',sans-serif;font-weight:700;font-size:13px;padding:9px 20px;border-radius:7px;border:1px solid var(--border);transition:all .2s;cursor:pointer}
+.bl-ghost:hover{border-color:rgba(255,255,255,.2);color:var(--lime)}
+.bl-lg{padding:12px 28px;font-size:14px}
+.cycler{display:inline-block;transition:opacity .2s;font-weight:700;min-width:80px}
+.cycler-cursor{animation:gl 1s ease-in-out infinite;color:var(--lime)}
+.hero-content{position:relative;z-index:2}
+.hs{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.hs-item{font-size:11px;color:var(--mut);font-weight:500;font-family:'JetBrains Mono',monospace}
+.hs-num{color:var(--lime);font-weight:700}
+.hs-divider{width:1px;height:12px;background:var(--border)}
 </style>
 </head>
 <body>
@@ -280,59 +290,36 @@ footer{border-top:1px solid rgba(158,240,26,.07);padding:26px 52px;background:va
 </style>
 <!-- HERO -->
 <section id="hero">
-  <div class="dg" style="position:absolute;inset:0;pointer-events:none;-webkit-mask-image:radial-gradient(ellipse 90% 100% at 65% 50%,black 30%,transparent 80%);mask-image:radial-gradient(ellipse 90% 100% at 65% 50%,black 30%,transparent 80%)"></div>
-  <div class="sc2"></div>
-  <div style="position:absolute;left:0;top:20%;width:2px;height:60%;background:linear-gradient(to bottom,transparent,rgba(158,240,26,.3),transparent);pointer-events:none"></div>
+  <svg class="dot-grid" width="100%" height="100%" viewBox="0 0 200 200" preserveAspectRatio="none" style="position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.5">
+    <defs><pattern id="dots" x="0" y="0" width="6" height="6" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r=".5" fill="var(--lime)"><animate attributeName="opacity" values=".1;.3;.1" dur="3s" repeatCount="indefinite"/></circle></pattern></defs>
+    <rect width="100%" height="100%" fill="url(#dots)"/>
+  </svg>
   <div class="hg">
-    <div>
-      <div class="hbg">
-        <span class="hb on"><span class="bd"></span>AI-POWERED</span>
-        <span class="hb"><span class="bd"></span>LOCAL-FIRST</span>
-        <span class="hb"><span class="bd"></span>MISSION DRIVEN</span>
+    <div class="hero-content">
+      <div class="lt" style="color:var(--lime)">AI-POWERED · LOCAL-FIRST · MISSION DRIVEN</div>
+      <h1 class="h1w">ONE ECOSYSTEM.<br><span class="h1g">INFINITE IMPACT.</span></h1>
+      <p class="h1d">So we built you <strong>Alphonso</strong>. A local-first AI operating environment. <span id="cycler" class="cycler">Research</span><span class="cycler-cursor">▋</span></p>
+      <div class="hbs" style="margin-top:24px">
+        <a href="https://github.com/Thatisshayan/AlphonsoEcosystem/releases" target="_blank" rel="noopener" class="bl bl-lg" id="dl-btn">↓ Download Free</a>
+        <a href="#agents" class="bl-ghost">▸ See How It Works</a>
       </div>
-      <div style="margin-bottom:16px;animation:fu .8s cubic-bezier(.16,1,.3,1) .25s both">
-        <div class="h1w">ONE ECOSYSTEM.</div>
-        <div class="h1g">INFINITE IMPACT.</div>
-      </div>
-      <div style="margin-bottom:16px;animation:fu .7s cubic-bezier(.16,1,.3,1) .35s both">
-        <div class="h1d">So we built you</div>
-        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:4px">
-          <div class="cw" id="cw"></div>
-          <div id="cb" class="cbg"></div>
-        </div>
-      </div>
-      <p class="hd" style="animation:fi .7s ease .5s both">A local-first AI operating environment. 9 specialized agents coordinate to research, create, execute, govern, and automate — while you stay in control.</p>
-      <div class="hbs" style="animation:fu .6s cubic-bezier(.16,1,.3,1) .55s both">
-        <a href="https://github.com/Thatisshayan/AlphonsoEcosystem/releases/tag/v2.0.2" target="_blank" rel="noopener" class="bl">↓ Download Alphonso</a>
-        <a href="https://github.com/Thatisshayan/AlphonsoEcosystem/blob/main/docs/ALPHONSO_GROUND_TRUTH.md" target="_blank" rel="noopener" class="bg2">Read Ground Truth</a>
-      </div>
-      <div class="hs" style="animation:fi .6s ease .7s both">
-        <a href="https://github.com/Thatisshayan/AlphonsoEcosystem" target="_blank" rel="noopener" class="ghp">⊙ Source on GitHub</a>
-        <div style="height:14px;width:1px;background:rgba(255,255,255,.07)"></div>
-        <span style="font-size:10px;color:var(--dim)">Independent founder, <span style="color:var(--lime)">driven by a mission.</span></span>
+      <div class="hs" style="margin-top:16px">
+        <span class="hs-item"><span class="hs-num">9</span> Agents</span>
+        <span class="hs-divider"></span>
+        <span class="hs-item"><span class="hs-num">14</span> Connectors</span>
+        <span class="hs-divider"></span>
+        <span class="hs-item"><span class="hs-num">100%</span> Private</span>
+        <span class="hs-divider"></span>
+        <span class="hs-item"><span class="hs-num">v2.0.8</span> Latest</span>
       </div>
     </div>
     <div class="hi" style="animation:fi 1s ease .3s both">
-      <div class="hxf">
-        <svg width="70" height="80" viewBox="0 0 60 69" fill="none" style="filter:drop-shadow(0 0 16px rgba(158,240,26,.9))">
-          <path d="M30 2 L58 18 L58 51 L30 67 L2 51 L2 18 Z" stroke="#9EF01A" stroke-width="2.5" fill="rgba(158,240,26,0.08)"/>
-          <text x="30" y="46" text-anchor="middle" fill="#9EF01A" font-size="30" font-family="Syne,sans-serif" font-weight="800" letter-spacing="-1">M</text>
-        </svg>
-      </div>
       <div class="hcard">
-        <img src="assets/hero-crew.png" alt="The Alphonso Crew"/>
-        <div class="ht"></div><div class="hbt"></div>
+        <img src="assets/hero-crew.png" alt="The Alphonso Crew" id="hero-img" style="transition:transform .1s linear"/>
         <div class="lb"><span class="ld"></span><span class="lt2">9 AGENTS ACTIVE</span></div>
-        <div class="vb">v2.0.2</div>
+        <div class="vb" style="background:rgba(0,0,0,.7);backdrop-filter:blur(8px);border:1px solid rgba(158,240,26,.2);border-radius:4px;padding:3px 8px;font-family:JetBrains Mono,monospace;font-size:9px;color:var(--lime)">v2.0.8</div>
       </div>
     </div>
-  </div>
-  <div class="sb" style="animation:fi .8s ease .9s both">
-    <div class="st"><div class="sn">9</div><div class="sl">Specialized Agents</div></div>
-    <div class="st"><div class="sn">13</div><div class="sl">Connectors</div></div>
-    <div class="st"><div class="sn">1,015</div><div class="sl">Tests Passing</div></div>
-    <div class="st"><div class="sn">100%</div><div class="sl">Local &amp; Private</div></div>
-    <div class="st"><div class="sn">v2.0</div><div class="sl">Latest Release</div></div>
   </div>
 </section>
 <!-- VIDEO -->
@@ -512,13 +499,18 @@ window.addEventListener('scroll',function(){document.getElementById('nav').class
 /* HAMBURGER */
 (function(){var h=document.getElementById('hamburger'),d=document.getElementById('drawer'),o=document.getElementById('drawer-overlay'),c=document.getElementById('drawer-close');if(!h)return;function open(){d.classList.add('open');o.classList.add('open');}function close(){d.classList.remove('open');o.classList.remove('open');}h.addEventListener('click',open);if(c)c.addEventListener('click',close);if(o)o.addEventListener('click',close);document.querySelectorAll('.dr-link').forEach(function(el){el.addEventListener('click',close);});})();
 
-/* CYCLE */
+/* CYCLER */
 (function(){
-  var w=document.getElementById('cw'),b=document.getElementById('cb'),idx=0;
-  AGENTS.forEach(function(a,i){var el=document.createElement('div');el.className='cy'+(i===0?' on':'');el.style.color=a.color;el.style.textShadow='0 0 30px rgba('+a.rgb+',.4)';el.textContent=a.name;w.appendChild(el);});
-  function go(i){var items=w.querySelectorAll('.cy');items[idx].classList.remove('on');items[idx].classList.add('out');setTimeout(function(){items[idx].classList.remove('out');},330);items[i].classList.add('on');b.textContent=AGENTS[i].title;b.style.color=AGENTS[i].color;b.style.background='rgba('+AGENTS[i].rgb+',.1)';b.style.borderColor='rgba('+AGENTS[i].rgb+',.3)';idx=i;}
-  go(0);setInterval(function(){go((idx+1)%AGENTS.length);},1900);
+  var c=document.getElementById('cycler');if(!c)return;
+  var words=[{t:'Research',c:'#52CBA0'},{t:'Create',c:'#B060FF'},{t:'Execute',c:'#00C8E0'},{t:'Govern',c:'#B0B8C0'},{t:'Automate',c:'#3ED464'}],i=0;
+  setInterval(function(){i=(i+1)%words.length;c.style.opacity='0';setTimeout(function(){c.textContent=words[i].t;c.style.color=words[i].c;c.style.opacity='1';},200);},1900);
 })();
+
+/* PARALLAX */
+(function(){var i=document.getElementById('hero-img');if(!i)return;window.addEventListener('scroll',function(){if(window.innerWidth>768)i.style.transform='translateY('+(window.scrollY*.15)+'px)';},{passive:true});})();
+
+/* MAGNETIC BUTTON */
+(function(){var b=document.getElementById('dl-btn');if(!b)return;b.addEventListener('mousemove',function(e){var r=b.getBoundingClientRect(),x=e.clientX-r.left-r.width/2,y=e.clientY-r.top-r.height/2;b.style.transform='translate('+(x*.15)+'px,'+(y*.15)+'px)';});b.addEventListener('mouseleave',function(){b.style.transform='translate(0,0)';});})();
 
 /* PILLARS */
 (function(){var g=document.getElementById('pg');PILLARS.forEach(function(p,i){var d=document.createElement('div');d.className='p2 rv';d.style.transitionDelay=(i*.05)+'s';d.innerHTML='<div class="pi">'+p.icon+'</div><div class="pt">'+p.t+'</div><div class="pd">'+p.d+'</div>';g.appendChild(d);});})();
