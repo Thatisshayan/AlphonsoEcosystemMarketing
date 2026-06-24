@@ -41,8 +41,17 @@ a{text-decoration:none;color:inherit}img{max-width:100%;display:block}
 .lt{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--lime);display:flex;align-items:center;gap:10px;margin-bottom:10px}
 .lt::before{content:'';display:block;width:14px;height:1px;background:var(--lime)}
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:11px 48px;display:flex;align-items:center;justify-content:space-between;transition:background .4s,border-color .4s;border-bottom:1px solid transparent}
-nav.sc{background:rgba(6,10,7,.96);backdrop-filter:blur(20px);border-color:var(--lg)}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:11px 48px;display:flex;align-items:center;justify-content:space-between;transition:background .4s,border-color .4s,border-bottom .4s;border-bottom:1px solid transparent}
+nav.sc{background:var(--glass-bg);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-color:var(--glass-border)}
+.hm{display:none;background:none;border:none;color:var(--cream);font-size:24px;cursor:pointer;padding:4px;line-height:1}
+.do{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:300;opacity:0;pointer-events:none;transition:opacity .3s}
+.do.open{opacity:1;pointer-events:auto}
+.dr{position:fixed;top:0;right:-300px;width:280px;height:100vh;background:var(--surface-2);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);z-index:301;transition:right .4s cubic-bezier(.16,1,.3,1);padding:48px 24px;border-left:1px solid var(--border);overflow-y:auto}
+.dr.open{right:0}
+.dc{position:absolute;top:16px;right:16px;background:none;border:none;color:var(--cream);font-size:20px;cursor:pointer;padding:8px}
+.dr-links{display:flex;flex-direction:column;gap:16px}
+.dr-link{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:var(--cream);padding:8px 0;border-bottom:1px solid var(--border);display:block}
+.dr-link:hover{color:var(--lime)}
 .nl0{display:flex;align-items:center;gap:9px}
 .nl0 img{width:26px;height:26px;border-radius:6px}
 .nn{font-family:'Syne',sans-serif;font-weight:800;font-size:12px;letter-spacing:1.5px;color:var(--cream);text-transform:uppercase;line-height:1.1}
@@ -59,16 +68,28 @@ nav.sc{background:rgba(6,10,7,.96);backdrop-filter:blur(20px);border-color:var(-
 </head>
 <body>
 <nav id="nav">
-  <a href="#" class="nl0"><img src="assets/icon.png" alt="A"/><div><div class="nn">Alphonso</div><div class="ns">Ecosystem</div></div></a>
+  <a href="#" class="nl0"><svg width="26" height="26" viewBox="0 0 32 32" fill="none"><polygon points="16,2 28,9 28,23 16,30 4,23 4,9" fill="none" stroke="var(--lime)" stroke-width="2"/><text x="16" y="20" text-anchor="middle" fill="var(--lime)" font-family="Syne,sans-serif" font-weight="800" font-size="16">M</text></svg><div><div class="nn">ALPHONSO</div><div class="ns">ECOSYSTEM</div></div></a>
   <div class="nls">
-    <a href="#pricing" class="nl">Pricing</a>
     <a href="#agents" class="nl">Agents</a>
+    <a href="#pricing" class="nl">Pricing</a>
     <a href="#uses" class="nl">Use Cases</a>
-    <a href="#privacy" class="nl">Privacy</a>
     <a href="#docs" class="nl">Docs</a>
     <a href="https://github.com/Thatisshayan/AlphonsoEcosystem" target="_blank" rel="noopener" class="ngh">GitHub</a>
+    <a href="https://github.com/Thatisshayan/AlphonsoEcosystem/releases" target="_blank" rel="noopener" class="bl">↓ Download</a>
   </div>
-  <a href="https://github.com/Thatisshayan/AlphonsoEcosystem/releases/tag/v2.0.2" target="_blank" rel="noopener" class="bl">↓ Download Alphonso</a>
+  <button id="hamburger" aria-label="Menu" class="hm">☰</button>
+</nav>
+<div id="drawer-overlay" class="do"></div>
+<nav id="drawer" class="dr" aria-label="Mobile navigation">
+  <button id="drawer-close" aria-label="Close menu" class="dc">✕</button>
+  <div class="dr-links">
+    <a href="#agents" class="dr-link">Agents</a>
+    <a href="#pricing" class="dr-link">Pricing</a>
+    <a href="#uses" class="dr-link">Use Cases</a>
+    <a href="#docs" class="dr-link">Docs</a>
+    <a href="https://github.com/Thatisshayan/AlphonsoEcosystem" class="dr-link">GitHub</a>
+    <a href="https://github.com/Thatisshayan/AlphonsoEcosystem/releases" target="_blank" rel="noopener" class="bl" style="width:100%;justify-content:center;margin-top:12px">↓ Download</a>
+  </div>
 </nav>
 <style>
 /* HERO */
@@ -254,6 +275,7 @@ footer{border-top:1px solid rgba(158,240,26,.07);padding:26px 52px;background:va
 /* RESPONSIVE */
 @media(max-width:1100px){.ag{grid-template-columns:repeat(3,1fr)}.dg{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:900px){.hg{grid-template-columns:1fr;padding:96px 26px 28px}.hi{display:none}.pg{grid-template-columns:repeat(2,1fr)}.pg3{grid-template-columns:1fr}.ag{grid-template-columns:repeat(2,1fr)}.privg{grid-template-columns:1fr}.mstats{display:none}.sb{grid-template-columns:repeat(3,1fr);padding:14px 26px}.sec{padding:0 26px 72px}#agents{padding:0 26px 72px}#pricing{padding:0 26px 72px}#shot{padding:56px 26px}#uses{padding:0 0 72px}.uc-head{padding:0 26px}.ucrow{grid-template-columns:1fr}.uc-vis{display:none}#pipeline{padding:0 26px 72px}#privacy{padding:0 26px 72px}#docs{padding:0 26px 72px}.dg{grid-template-columns:1fr 1fr}#cta{padding:0 26px 72px}.mc{padding:32px 26px}nav{padding:10px 18px}.nls{display:none}footer{padding:22px 26px}.ft{flex-direction:column;align-items:flex-start}.shot-inner{grid-template-columns:1fr}}
+@media(max-width:768px){nav{padding:10px 20px}.nls{display:none}.hm{display:block}}
 @media(max-width:600px){.ag{grid-template-columns:1fr}.pg{grid-template-columns:1fr}.pg3{grid-template-columns:1fr}.sb{grid-template-columns:repeat(2,1fr)}.dg{grid-template-columns:1fr}}
 </style>
 <!-- HERO -->
@@ -486,6 +508,9 @@ var TIERS=[{t:'Free',p:'$0',s:'Always free',feats:[{l:'9 specialized agents',on:
 function h2r(h){return parseInt(h.slice(1,3),16)+','+parseInt(h.slice(3,5),16)+','+parseInt(h.slice(5,7),16);}
 
 window.addEventListener('scroll',function(){document.getElementById('nav').classList.toggle('sc',window.scrollY>50);},{passive:true});
+
+/* HAMBURGER */
+(function(){var h=document.getElementById('hamburger'),d=document.getElementById('drawer'),o=document.getElementById('drawer-overlay'),c=document.getElementById('drawer-close');if(!h)return;function open(){d.classList.add('open');o.classList.add('open');}function close(){d.classList.remove('open');o.classList.remove('open');}h.addEventListener('click',open);if(c)c.addEventListener('click',close);if(o)o.addEventListener('click',close);document.querySelectorAll('.dr-link').forEach(function(el){el.addEventListener('click',close);});})();
 
 /* CYCLE */
 (function(){
